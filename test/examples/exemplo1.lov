@@ -1,0 +1,26 @@
+main ()
+begin
+  let Float x;
+  let Float y;
+  let Bool resultado;
+  
+  x := 10.5;
+  y := 5.0;
+  
+  if (x > y) begin
+    resultado := true;
+  end;
+  
+  x := (x + y) * 2.0;
+  y := (x - y) / 2.0;
+  
+  print x;
+  print y;
+  
+  if ((x == y) || (x < 10.0)) begin
+    resultado := false;
+  end;
+  
+  print resultado;
+end
+

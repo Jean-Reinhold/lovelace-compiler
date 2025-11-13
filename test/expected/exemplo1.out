@@ -1,0 +1,88 @@
+Palavra reservada: main
+Abre parênteses: (
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: let
+Palavra reservada: Float
+Identificador: x
+Ponto e virgula: ;
+Palavra reservada: let
+Palavra reservada: Float
+Identificador: y
+Ponto e virgula: ;
+Palavra reservada: let
+Palavra reservada: Bool
+Identificador: resultado
+Ponto e virgula: ;
+Identificador: x
+Atribuição: :=
+Número: 10.5
+Ponto e virgula: ;
+Identificador: y
+Atribuição: :=
+Número: 5.0
+Ponto e virgula: ;
+Palavra reservada: if
+Abre parênteses: (
+Identificador: x
+Operador de comparação: >
+Identificador: y
+Fecha parênteses: )
+Palavra reservada: begin
+Identificador: resultado
+Atribuição: :=
+Palavra reservada: true
+Ponto e virgula: ;
+Palavra reservada: end
+Ponto e virgula: ;
+Identificador: x
+Atribuição: :=
+Abre parênteses: (
+Identificador: x
+Operador aritmético: +
+Identificador: y
+Fecha parênteses: )
+Operador aritmético: *
+Número: 2.0
+Ponto e virgula: ;
+Identificador: y
+Atribuição: :=
+Abre parênteses: (
+Identificador: x
+Operador aritmético: -
+Identificador: y
+Fecha parênteses: )
+Operador aritmético: /
+Número: 2.0
+Ponto e virgula: ;
+Palavra reservada: print
+Identificador: x
+Ponto e virgula: ;
+Palavra reservada: print
+Identificador: y
+Ponto e virgula: ;
+Palavra reservada: if
+Abre parênteses: (
+Abre parênteses: (
+Identificador: x
+Operador de comparação: ==
+Identificador: y
+Fecha parênteses: )
+Operador lógico: ||
+Abre parênteses: (
+Identificador: x
+Operador de comparação: <
+Número: 10.0
+Fecha parênteses: )
+Fecha parênteses: )
+Palavra reservada: begin
+Identificador: resultado
+Atribuição: :=
+Palavra reservada: false
+Ponto e virgula: ;
+Palavra reservada: end
+Ponto e virgula: ;
+Palavra reservada: print
+Identificador: resultado
+Ponto e virgula: ;
+Palavra reservada: end

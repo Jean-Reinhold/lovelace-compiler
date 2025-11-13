@@ -1,0 +1,212 @@
+Palavra reservada: def
+Palavra reservada: Float
+Identificador: calcular
+Abre parênteses: (
+Palavra reservada: Float
+Identificador: a
+Vírgula: ,
+Palavra reservada: Float
+Identificador: b
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: let
+Palavra reservada: Float
+Identificador: resultado
+Ponto e virgula: ;
+Identificador: resultado
+Atribuição: :=
+Abre parênteses: (
+Identificador: a
+Operador aritmético: +
+Identificador: b
+Fecha parênteses: )
+Operador aritmético: *
+Número: 2.0
+Ponto e virgula: ;
+Palavra reservada: return
+Identificador: resultado
+Ponto e virgula: ;
+Palavra reservada: end
+Palavra reservada: def
+Palavra reservada: Bool
+Identificador: verificar
+Abre parênteses: (
+Palavra reservada: Float
+Identificador: valor
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: let
+Palavra reservada: Bool
+Identificador: ok
+Ponto e virgula: ;
+Palavra reservada: if
+Abre parênteses: (
+Identificador: valor
+Operador de comparação: >
+Número: 0.0
+Fecha parênteses: )
+Palavra reservada: begin
+Identificador: ok
+Atribuição: :=
+Palavra reservada: true
+Ponto e virgula: ;
+Palavra reservada: end
+Ponto e virgula: ;
+Palavra reservada: if
+Abre parênteses: (
+Abre parênteses: (
+Identificador: valor
+Operador de comparação: <
+Número: 0.0
+Fecha parênteses: )
+Operador lógico: ||
+Abre parênteses: (
+Identificador: valor
+Operador de comparação: ==
+Número: 0.0
+Fecha parênteses: )
+Fecha parênteses: )
+Palavra reservada: begin
+Identificador: ok
+Atribuição: :=
+Palavra reservada: false
+Ponto e virgula: ;
+Palavra reservada: end
+Ponto e virgula: ;
+Palavra reservada: return
+Identificador: ok
+Ponto e virgula: ;
+Palavra reservada: end
+Palavra reservada: main
+Abre parênteses: (
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: let
+Palavra reservada: Float
+Identificador: num1
+Ponto e virgula: ;
+Palavra reservada: let
+Palavra reservada: Float
+Identificador: num2
+Ponto e virgula: ;
+Palavra reservada: let
+Palavra reservada: Float
+Identificador: resultado
+Ponto e virgula: ;
+Palavra reservada: let
+Palavra reservada: Bool
+Identificador: valido
+Ponto e virgula: ;
+Palavra reservada: let
+Palavra reservada: Float
+Identificador: contador
+Ponto e virgula: ;
+Identificador: num1
+Atribuição: :=
+Número: 15.5
+Ponto e virgula: ;
+Identificador: num2
+Atribuição: :=
+Número: 3.2
+Ponto e virgula: ;
+Identificador: resultado
+Atribuição: :=
+Identificador: calcular
+Abre parênteses: (
+Identificador: num1
+Vírgula: ,
+Identificador: num2
+Fecha parênteses: )
+Ponto e virgula: ;
+Palavra reservada: print
+Identificador: resultado
+Ponto e virgula: ;
+Identificador: valido
+Atribuição: :=
+Identificador: verificar
+Abre parênteses: (
+Identificador: resultado
+Fecha parênteses: )
+Ponto e virgula: ;
+Palavra reservada: if
+Abre parênteses: (
+Identificador: valido
+Operador lógico: &&
+Abre parênteses: (
+Identificador: resultado
+Operador de comparação: >
+Número: 10.0
+Fecha parênteses: )
+Fecha parênteses: )
+Palavra reservada: begin
+Identificador: contador
+Atribuição: :=
+Número: 0.0
+Ponto e virgula: ;
+Palavra reservada: while
+Abre parênteses: (
+Identificador: contador
+Operador de comparação: <
+Número: 5.0
+Fecha parênteses: )
+Palavra reservada: begin
+Identificador: contador
+Atribuição: :=
+Abre parênteses: (
+Identificador: contador
+Operador aritmético: +
+Número: 1.0
+Fecha parênteses: )
+Ponto e virgula: ;
+Palavra reservada: print
+Identificador: contador
+Ponto e virgula: ;
+Palavra reservada: end
+Ponto e virgula: ;
+Palavra reservada: end
+Ponto e virgula: ;
+Identificador: num1
+Atribuição: :=
+Palavra reservada: read
+Abre parênteses: (
+Fecha parênteses: )
+Ponto e virgula: ;
+Identificador: num2
+Atribuição: :=
+Palavra reservada: read
+Abre parênteses: (
+Fecha parênteses: )
+Ponto e virgula: ;
+Palavra reservada: if
+Abre parênteses: (
+Abre parênteses: (
+Identificador: num1
+Operador de comparação: <
+Identificador: num2
+Fecha parênteses: )
+Operador lógico: ||
+Abre parênteses: (
+Identificador: num1
+Operador de comparação: ==
+Identificador: num2
+Fecha parênteses: )
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: print
+Identificador: num1
+Ponto e virgula: ;
+Palavra reservada: end
+Ponto e virgula: ;
+Identificador: resultado
+Atribuição: :=
+Identificador: calcular
+Abre parênteses: (
+Identificador: num1
+Vírgula: ,
+Identificador: num2
+Fecha parênteses: )
+Ponto e virgula: ;
+Palavra reservada: print
+Identificador: resultado
+Ponto e virgula: ;
+Palavra reservada: end

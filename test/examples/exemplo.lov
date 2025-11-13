@@ -1,0 +1,7 @@
+main ()
+ begin
+ let Float teste;
+ teste := 9.0;
+ print teste;
+end
+

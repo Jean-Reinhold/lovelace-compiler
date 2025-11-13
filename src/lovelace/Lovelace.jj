@@ -1,0 +1,94 @@
+options {
+    STATIC = false;
+    DEBUG_PARSER = false;
+    DEBUG_LOOKAHEAD = false;
+    DEBUG_TOKEN_MANAGER = false;
+    UNICODE_INPUT = false;
+    IGNORE_CASE = false;
+    USER_TOKEN_MANAGER = false;
+    USER_CHAR_STREAM = false;
+    JAVA_UNICODE_ESCAPE = false;
+    BUILD_PARSER = true;
+    BUILD_TOKEN_MANAGER = true;
+}
+
+PARSER_BEGIN(LovelaceParser)
+package lovelace;
+
+import java.io.*;
+
+public class LovelaceParser {
+    // Parser class - not used, but required for JavaCC to generate token manager
+}
+PARSER_END(LovelaceParser)
+
+// Skip whitespace
+SKIP : {
+    " "
+    | "\t"
+    | "\n"
+    | "\r"
+}
+
+// Token definitions - keywords must come before identifiers
+TOKEN : {
+    < MAIN : "main" >
+    | < BEGIN : "begin" >
+    | < END : "end" >
+    | < LET : "let" >
+    | < FLOAT : "Float" >
+    | < BOOL : "Bool" >
+    | < VOID : "Void" >
+    | < IF : "if" >
+    | < WHILE : "while" >
+    | < READ : "read" >
+    | < RETURN : "return" >
+    | < PRINT : "print" >
+    | < DEF : "def" >
+    | < TRUE : "true" >
+    | < FALSE : "false" >
+}
+
+// Operators - multi-character operators must come before single-character ones
+TOKEN : {
+    < ASSIGN : ":=" >
+    | < AND : "&&" >
+    | < OR : "||" >
+    | < EQ : "==" >
+    | < PLUS : "+" >
+    | < MINUS : "-" >
+    | < MULT : "*" >
+    | < DIV : "/" >
+    | < LT : "<" >
+    | < GT : ">" >
+}
+
+// Punctuation
+TOKEN : {
+    < LPAREN : "(" >
+    | < RPAREN : ")" >
+    | < SEMICOLON : ";" >
+    | < COMMA : "," >
+}
+
+// Numbers: digitos facao_opcional expoente_opcional
+// digitos -> digito+
+// facao_opcional -> (.digitos)?
+// expoente_opcional -> (E (+ | -)? digitos)?
+TOKEN : {
+    < NUMBER : (["0"-"9"])+ ("." (["0"-"9"])+)? (["E","e"] (["+","-"])? (["0"-"9"])+)? >
+}
+
+// Identifiers: letra letraoudigito* finalsublinhado*
+// letra -> [a-zA-Z]
+// letraoudigito -> letra | digito
+// finalsublinhado -> _letraoudigito+
+// So: letter (letter|digit)* (_ (letter|digit)+)*
+TOKEN : {
+    < IDENTIFIER : 
+        ["a"-"z","A"-"Z"] 
+        (["a"-"z","A"-"Z","0"-"9"])* 
+        ("_" (["a"-"z","A"-"Z","0"-"9"])+)* 
+    >
+}
+
