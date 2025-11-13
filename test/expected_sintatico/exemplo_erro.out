@@ -1,0 +1,4 @@
+Erro de sintaxe na linha 4, coluna 12: Encountered " <IDENTIFIER> "print "" at line 4, column 12.
+Was expecting one of:
+    ";" ...
+

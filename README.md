@@ -1,143 +1,167 @@
-# Analisador Léxico para a Linguagem Lovelace
+# Lovelace Compiler
 
-Este projeto implementa um analisador léxico para a Linguagem Lovelace usando JavaCC.
+Lexical and syntax analyzer implementation for the Lovelace language using JavaCC.
 
-> 📚 **Documentação Completa**: Para uma explicação detalhada passo a passo, consulte [DOCUMENTATION.md](DOCUMENTATION.md)
+## What's in here
 
-## Requisitos
+- **Lexical Analyzer**: tokenizes Lovelace programs, showing all tokens found
+- **Syntax Analyzer**: validates program syntax, checking if they're correct
 
-- Java JDK (versão 8 ou superior)
-- JavaCC (Java Compiler Compiler)
+## Requirements
 
-### Instalação do JavaCC
+- Java JDK 8 or higher
+- JavaCC
 
-1. Baixe o JavaCC de: https://javacc.github.io/javacc/
-2. Extraia o arquivo e adicione o diretório `bin` ao seu PATH, ou
-3. Use um gerenciador de pacotes:
-   - macOS: `brew install javacc`
-   - Linux: `sudo apt-get install javacc` (ou equivalente)
+### Installing JavaCC
 
-## Estrutura do Projeto
+**macOS:**
+```bash
+brew install javacc
+```
+
+**Linux:**
+```bash
+sudo apt-get install javacc
+```
+
+Or download directly from: https://javacc.github.io/javacc/
+
+## Project Structure
 
 ```
 lovelace-compiler/
-├── src/
-│   └── lovelace/
-│       ├── Lovelace.jj          # Gramática JavaCC com definições de tokens
-│       └── Lovelace.java       # Classe principal que utiliza o lexer gerado
+├── src/lovelace/
+│   ├── Lovelace.jj              # Grammar with tokens and production rules
+│   ├── Lovelace.java             # Lexical analyzer
+│   └── LovelaceSintatico.java    # Syntax analyzer
 ├── test/
-│   ├── examples/                # Arquivos de teste Lovelace
-│   │   ├── exemplo.lov
-│   │   ├── exemplo1.lov
-│   │   └── exemplo2.lov
-│   └── expected/                # Saídas esperadas para cada teste
-│       ├── exemplo.out
-│       ├── exemplo1.out
-│       └── exemplo2.out
+│   ├── examples/                 # Example programs
+│   ├── expected/                 # Expected lexer outputs
+│   └── expected_sintatico/        # Expected parser outputs
 └── scripts/
-    ├── build.sh                 # Script de compilação
-    ├── test.sh                  # Script de teste (executa todos os testes)
-    └── run.sh                   # Script interativo para executar um teste
+    ├── build.sh                  # Builds everything
+    ├── test.sh                   # Tests the lexer
+    ├── test_sintatico.sh         # Tests the parser
+    ├── run.sh                    # Runs lexer interactively
+    └── run_sintatico.sh          # Runs parser interactively
 ```
 
-## Compilação
+## Building
 
-Execute o script de build:
+Run the build script:
 
 ```bash
-chmod +x scripts/build.sh
 ./scripts/build.sh
 ```
 
-Ou manualmente:
+This will generate Java files from JavaCC and compile everything.
+
+## Usage
+
+### Lexical Analyzer
+
+Tokenizes the program and shows all tokens:
 
 ```bash
-cd src/lovelace
-javacc Lovelace.jj
-cd ../..
-javac -d . src/lovelace/*.java
-```
-
-## Uso
-
-Após compilar, execute o analisador léxico com:
-
-```bash
-java lovelace.Lovelace <arquivo.lov>
-```
-
-### Exemplos
-
-```bash
-# Exemplo básico
 java lovelace.Lovelace test/examples/exemplo.lov
-
-# Exemplo 1: Variáveis, atribuições, aritmética e condicionais
-java lovelace.Lovelace test/examples/exemplo1.lov
-
-# Exemplo 2: Funções, loops, operações booleanas e chamadas de função
-java lovelace.Lovelace test/examples/exemplo2.lov
 ```
 
-## Testes
-
-### Executar todos os testes
-
-Execute o script de teste para verificar se a saída do analisador corresponde às saídas esperadas:
+Or use the interactive script:
 
 ```bash
-chmod +x scripts/test.sh
-./scripts/test.sh
-```
-
-O script executa todos os exemplos e compara as saídas com os arquivos esperados em `test/expected/`.
-
-### Executar um teste interativamente
-
-Para executar um teste específico de forma interativa:
-
-```bash
-chmod +x scripts/run.sh
 ./scripts/run.sh
 ```
 
-O script exibirá um menu com todos os testes disponíveis e permitirá que você selecione qual executar.
+### Syntax Analyzer
 
-## Tokens Reconhecidos
+Validates program syntax:
 
-### Palavras Reservadas
-- `main`, `begin`, `end`, `let`, `Float`, `Bool`, `Void`
-- `if`, `while`, `read`, `return`, `print`, `def`
-- `true`, `false`
-
-### Operadores
-- Aritméticos: `+`, `-`, `*`, `/`
-- Lógicos: `&&`, `||`
-- Comparação: `<`, `>`, `==`
-- Atribuição: `:=`
-
-### Pontuação
-- `(`, `)`, `;`, `,`
-
-### Outros
-- Identificadores: letra seguida de letras, dígitos ou sublinhados
-- Números: inteiros, decimais e notação científica (ex: `123`, `45.67`, `1.5E10`)
-
-## Formato de Saída
-
-O analisador imprime cada token encontrado no formato:
-
-```
-Tipo do token: valor
+```bash
+java lovelace.LovelaceSintatico test/examples/exemplo.lov
 ```
 
-Exemplo:
+If everything is correct, it shows:
+```
+Análise sintática concluída com sucesso!
+```
+
+If there's an error, it shows the line and column of the problem.
+
+Or use the interactive script:
+
+```bash
+./scripts/run_sintatico.sh
+```
+
+## Testing
+
+### Test the Lexer
+
+```bash
+./scripts/test.sh
+```
+
+Runs all examples and compares with expected outputs.
+
+### Test the Parser
+
+```bash
+./scripts/test_sintatico.sh
+```
+
+Validates that all example programs are syntactically correct.
+
+## Recognized Tokens
+
+### Reserved Words
+`main`, `begin`, `end`, `let`, `Float`, `Bool`, `Void`, `if`, `while`, `read`, `return`, `print`, `def`, `true`, `false`
+
+### Operators
+- Arithmetic: `+`, `-`, `*`, `/`
+- Logical: `&&`, `||`
+- Comparison: `<`, `>`, `==`
+- Assignment: `:=`
+
+### Other
+- Identifiers: letter followed by letters/digits, can have underscores
+- Numbers: integers, decimals and scientific notation (e.g., `123`, `45.67`, `1.5E10`)
+- Punctuation: `(`, `)`, `;`, `,`
+
+## Examples
+
+There are three ready-to-use examples:
+- `exemplo.lov`: basic, just declares a variable and prints
+- `exemplo1.lov`: variables, conditionals, expressions
+- `exemplo2.lov`: functions, loops, function calls
+
+All are in `test/examples/`.
+
+## Lexer Output
+
+The lexical analyzer shows each token found:
+
 ```
 Palavra reservada: main
 Abre parênteses: (
 Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: let
+Palavra reservada: Float
 Identificador: teste
-Atribuição: :=
-Número: 9.0
 Ponto e virgula: ;
+...
+```
+
+## Parser Output
+
+The syntax analyzer only shows if it succeeded or not:
+
+**Success:**
+```
+Análise sintática concluída com sucesso!
+```
+
+**Error:**
+```
+Erro de sintaxe na linha 4, coluna 12: ...
 ```

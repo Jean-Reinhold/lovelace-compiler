@@ -5,8 +5,8 @@ PROJECT_ROOT="$( cd "$SCRIPT_DIR/.." && pwd )"
 
 cd "$PROJECT_ROOT"
 
-if [ ! -d "lovelace" ] || [ ! -f "lovelace/Lovelace.class" ]; then
-    echo "Error: Analyzer not compiled. Run ./scripts/build.sh first."
+if [ ! -d "lovelace" ] || [ ! -f "lovelace/LovelaceSintatico.class" ]; then
+    echo "Error: Parser not compiled. Run ./scripts/build.sh first."
     exit 1
 fi
 
@@ -18,7 +18,7 @@ if [ ${#TEST_FILES[@]} -eq 0 ]; then
 fi
 
 echo "=========================================="
-echo "Lovelace Lexical Analyzer - Test Runner"
+echo "Lovelace Syntax Analyzer - Test Runner"
 echo "=========================================="
 echo ""
 echo "Available test cases:"
@@ -56,14 +56,14 @@ done
 
 echo ""
 echo "=========================================="
-echo "Running: $(basename "$selected_file")"
+echo "Parsing: $(basename "$selected_file")"
 echo "=========================================="
 echo ""
 
-java lovelace.Lovelace "$selected_file"
+java lovelace.LovelaceSintatico "$selected_file"
 
 echo ""
 echo "=========================================="
-echo "Analysis complete!"
+echo "Parsing complete!"
 echo "=========================================="
 

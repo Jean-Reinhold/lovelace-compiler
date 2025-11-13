@@ -18,11 +18,13 @@ package lovelace;
 import java.io.*;
 
 public class LovelaceParser {
-    // Parser class - not used, but required for JavaCC to generate token manager
+    public void parse() throws ParseException {
+        Program();
+    }
 }
 PARSER_END(LovelaceParser)
 
-// Skip whitespace
+// Ignora espaços em branco
 SKIP : {
     " "
     | "\t"
@@ -30,7 +32,7 @@ SKIP : {
     | "\r"
 }
 
-// Token definitions - keywords must come before identifiers
+// Palavras reservadas (precisam vir antes dos identificadores)
 TOKEN : {
     < MAIN : "main" >
     | < BEGIN : "begin" >
@@ -49,7 +51,7 @@ TOKEN : {
     | < FALSE : "false" >
 }
 
-// Operators - multi-character operators must come before single-character ones
+// Operadores (multi-caractere antes dos de um caractere)
 TOKEN : {
     < ASSIGN : ":=" >
     | < AND : "&&" >
@@ -63,7 +65,7 @@ TOKEN : {
     | < GT : ">" >
 }
 
-// Punctuation
+// Pontuação
 TOKEN : {
     < LPAREN : "(" >
     | < RPAREN : ")" >
@@ -71,24 +73,357 @@ TOKEN : {
     | < COMMA : "," >
 }
 
-// Numbers: digitos facao_opcional expoente_opcional
-// digitos -> digito+
-// facao_opcional -> (.digitos)?
-// expoente_opcional -> (E (+ | -)? digitos)?
+// Números: inteiros, decimais e notação científica
 TOKEN : {
     < NUMBER : (["0"-"9"])+ ("." (["0"-"9"])+)? (["E","e"] (["+","-"])? (["0"-"9"])+)? >
 }
 
-// Identifiers: letra letraoudigito* finalsublinhado*
-// letra -> [a-zA-Z]
-// letraoudigito -> letra | digito
-// finalsublinhado -> _letraoudigito+
-// So: letter (letter|digit)* (_ (letter|digit)+)*
+// Identificadores: letra seguida de letras/dígitos, pode ter sublinhados
 TOKEN : {
     < IDENTIFIER : 
         ["a"-"z","A"-"Z"] 
         (["a"-"z","A"-"Z","0"-"9"])* 
         ("_" (["a"-"z","A"-"Z","0"-"9"])+)* 
     >
+}
+
+// Programa: funções opcionais + main obrigatória
+void Program():
+{
+}
+{
+    FunctionList()
+    MainFunction()
+}
+
+// Lista de funções (zero ou mais)
+void FunctionList():
+{
+}
+{
+    (
+        Function()
+    )*
+}
+
+// Definição de função: def Tipo nome(params) begin ... end
+void Function():
+{
+}
+{
+    <DEF>
+    Type()
+    <IDENTIFIER>
+    <LPAREN>
+    (
+        ParameterList()
+    )?
+    <RPAREN>
+    <BEGIN>
+    VarDecl()
+    StatementList()
+    <END>
+}
+
+// Função main: main() begin ... end
+void MainFunction():
+{
+}
+{
+    <MAIN>
+    <LPAREN>
+    <RPAREN>
+    <BEGIN>
+    VarDecl()
+    StatementList()
+    <END>
+}
+
+// Lista de parâmetros: Tipo id, Tipo id, ...
+void ParameterList():
+{
+}
+{
+    Parameter()
+    (
+        <COMMA>
+        Parameter()
+    )*
+}
+
+// Parâmetro: Tipo identificador
+void Parameter():
+{
+}
+{
+    Type()
+    <IDENTIFIER>
+}
+
+// Tipos: Float, Bool ou Void
+void Type():
+{
+}
+{
+    (
+        <FLOAT>
+        | <BOOL>
+        | <VOID>
+    )
+}
+
+// Declarações de variáveis: let Tipo id; (zero ou mais)
+void VarDecl():
+{
+}
+{
+    (
+        LOOKAHEAD(2)
+        <LET>
+        Type()
+        <IDENTIFIER>
+        <SEMICOLON>
+    )*
+}
+
+// Lista de comandos (zero ou mais)
+void StatementList():
+{
+}
+{
+    (
+        LOOKAHEAD(1)
+        Statement()
+    )*
+}
+
+// Comando: if, while, print, read, return, atribuição ou declaração
+void Statement():
+{
+}
+{
+    (
+        IfStatement()
+        | WhileStatement()
+        | PrintStatement()
+        | ReadStatement()
+        | ReturnStatement()
+        | AssignStatement()
+        | DeclareStatement()
+    )
+}
+
+// Comando if: if (expr) begin ... end;
+void IfStatement():
+{
+}
+{
+    <IF>
+    <LPAREN>
+    Expression()
+    <RPAREN>
+    <BEGIN>
+    StatementList()
+    <END>
+    <SEMICOLON>
+}
+
+// Comando while: while (expr) begin ... end;
+void WhileStatement():
+{
+}
+{
+    <WHILE>
+    <LPAREN>
+    Expression()
+    <RPAREN>
+    <BEGIN>
+    StatementList()
+    <END>
+    <SEMICOLON>
+}
+
+// Comando print: print expr;
+void PrintStatement():
+{
+}
+{
+    <PRINT>
+    Expression()
+    <SEMICOLON>
+}
+
+// Comando read: read();
+void ReadStatement():
+{
+}
+{
+    <READ>
+    <LPAREN>
+    <RPAREN>
+    <SEMICOLON>
+}
+
+// Comando return: return expr; (expr opcional)
+void ReturnStatement():
+{
+}
+{
+    <RETURN>
+    (
+        Expression()
+    )?
+    <SEMICOLON>
+}
+
+// Atribuição: id := expr;
+void AssignStatement():
+{
+}
+{
+    <IDENTIFIER>
+    <ASSIGN>
+    Expression()
+    <SEMICOLON>
+}
+
+// Declaração de variável: let Tipo id;
+void DeclareStatement():
+{
+}
+{
+    <LET>
+    Type()
+    <IDENTIFIER>
+    <SEMICOLON>
+}
+
+// Expressão (delega para expressões booleanas)
+void Expression():
+{
+}
+{
+    BooleanOrExpression()
+}
+
+// Expressão OR: expr || expr || ...
+void BooleanOrExpression():
+{
+}
+{
+    BooleanAndExpression()
+    (
+        <OR>
+        BooleanAndExpression()
+    )*
+}
+
+// Expressão AND: expr && expr && ...
+void BooleanAndExpression():
+{
+}
+{
+    ComparisonExpression()
+    (
+        <AND>
+        ComparisonExpression()
+    )*
+}
+
+// Comparações: expr == expr, expr < expr, expr > expr
+void ComparisonExpression():
+{
+}
+{
+    ArithmeticExpression()
+    (
+        (
+            <EQ>
+            | <LT>
+            | <GT>
+        )
+        ArithmeticExpression()
+    )*
+}
+
+// Expressões aritméticas: term + term, term - term
+void ArithmeticExpression():
+{
+}
+{
+    Term()
+    (
+        (
+            <PLUS>
+            | <MINUS>
+        )
+        Term()
+    )*
+}
+
+// Termos: factor * factor, factor / factor
+void Term():
+{
+}
+{
+    Factor()
+    (
+        (
+            <MULT>
+            | <DIV>
+        )
+        Factor()
+    )*
+}
+
+// Fatores: (expr), id, número, true, false, chamada de função, read()
+void Factor():
+{
+    Token idToken;
+}
+{
+    (
+        <LPAREN>
+        Expression()
+        <RPAREN>
+        |
+        LOOKAHEAD(2)
+        idToken = <IDENTIFIER>
+        <LPAREN>
+        {
+            // é uma chamada de função
+        }
+        (
+            ExpressionList()
+        )?
+        <RPAREN>
+        |
+        idToken = <IDENTIFIER>
+        {
+            // só um identificador
+        }
+        |
+        <NUMBER>
+        |
+        <TRUE>
+        |
+        <FALSE>
+        |
+        <READ>
+        <LPAREN>
+        <RPAREN>
+    )
+}
+
+// Lista de expressões: expr, expr, expr, ...
+void ExpressionList():
+{
+}
+{
+    Expression()
+    (
+        <COMMA>
+        Expression()
+    )*
 }
 

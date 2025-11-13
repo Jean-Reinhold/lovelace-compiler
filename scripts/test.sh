@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-# Get the directory where this script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PROJECT_ROOT="$( cd "$SCRIPT_DIR/.." && pwd )"
 
@@ -12,7 +10,7 @@ echo "=========================================="
 echo ""
 
 if [ ! -d "lovelace" ] || [ ! -f "lovelace/Lovelace.class" ]; then
-    echo "Error: Analyzer not compiled. Please run ./build.sh first."
+    echo "Error: Analyzer not compiled. Run ./scripts/build.sh first."
     exit 1
 fi
 
