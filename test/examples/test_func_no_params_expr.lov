@@ -1,0 +1,19 @@
+def Float pi()
+begin
+  return 3.14;
+end
+
+def Float zero()
+begin
+  return 0.0;
+end
+
+main ()
+begin
+  let Float r;
+  r := pi() + 1.0;
+  print r;
+  r := pi() * 2.0;
+  print r;
+  print zero();
+end

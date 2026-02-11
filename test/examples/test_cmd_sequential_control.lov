@@ -1,0 +1,21 @@
+main ()
+begin
+  let Float x;
+  let Float y;
+  x := 5.0;
+  y := 10.0;
+  if (x > 0.0) begin
+    print x;
+  end;
+  if (y > 0.0) begin
+    print y;
+  end;
+  while (x > 0.0) begin
+    x := x - 1.0;
+  end;
+  while (y > 5.0) begin
+    y := y - 1.0;
+  end;
+  print x;
+  print y;
+end

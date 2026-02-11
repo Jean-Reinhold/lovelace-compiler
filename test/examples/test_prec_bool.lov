@@ -1,0 +1,8 @@
+main ()
+begin
+  let Bool r;
+  r := true || false && false;
+  print r;
+  r := false || true && true;
+  print r;
+end

@@ -1,0 +1,9 @@
+main ()
+begin
+  let Float my_var;
+  let Float x_1;
+  my_var := 3.0;
+  x_1 := 7.0;
+  print my_var;
+  print x_1;
+end

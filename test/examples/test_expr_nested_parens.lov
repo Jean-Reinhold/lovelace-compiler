@@ -1,0 +1,8 @@
+main ()
+begin
+  let Float r;
+  r := ((1.0 + 2.0) * (3.0 - 1.0));
+  print r;
+  r := (((4.0 + 1.0) * 2.0) / (1.0 + 1.0));
+  print r;
+end

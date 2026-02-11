@@ -1,0 +1,12 @@
+main ()
+begin
+  let Float x;
+  let Bool b;
+  x := 5.0;
+  b := true;
+  print 42.0;
+  print x;
+  print x + 1.0;
+  print x > 3.0;
+  print b;
+end

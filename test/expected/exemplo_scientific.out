@@ -1,0 +1,23 @@
+Palavra reservada: main
+Abre parênteses: (
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: let
+Palavra reservada: Float
+Identificador: x
+Ponto e virgula: ;
+Identificador: x
+Atribuição: :=
+Número: 1.5E10
+Ponto e virgula: ;
+Palavra reservada: print
+Identificador: x
+Ponto e virgula: ;
+Identificador: x
+Atribuição: :=
+Número: 2.0e3
+Ponto e virgula: ;
+Palavra reservada: print
+Identificador: x
+Ponto e virgula: ;
+Palavra reservada: end

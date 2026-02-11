@@ -1,0 +1,8 @@
+Erro de sintaxe na linha 3, coluna 7: Encountered " "begin" "begin "" at line 3, column 13.
+Was expecting:
+    <IDENTIFIER> ...
+    
+Esperado: Encountered " "begin" "begin "" at line 3, column 13.
+Was expecting:
+    <IDENTIFIER> ...
+    

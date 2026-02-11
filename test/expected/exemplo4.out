@@ -1,0 +1,157 @@
+Palavra reservada: def
+Palavra reservada: Void
+Identificador: mostrar
+Abre parênteses: (
+Palavra reservada: Float
+Identificador: valor
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: print
+Identificador: valor
+Ponto e virgula: ;
+Palavra reservada: end
+Palavra reservada: def
+Palavra reservada: Float
+Identificador: dobro
+Abre parênteses: (
+Palavra reservada: Float
+Identificador: x
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: return
+Identificador: x
+Operador aritmético: *
+Número: 2.0
+Ponto e virgula: ;
+Palavra reservada: end
+Palavra reservada: def
+Palavra reservada: Float
+Identificador: soma3
+Abre parênteses: (
+Palavra reservada: Float
+Identificador: a
+Vírgula: ,
+Palavra reservada: Float
+Identificador: b
+Vírgula: ,
+Palavra reservada: Float
+Identificador: c
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: return
+Abre parênteses: (
+Abre parênteses: (
+Identificador: a
+Operador aritmético: +
+Identificador: b
+Fecha parênteses: )
+Operador aritmético: +
+Identificador: c
+Fecha parênteses: )
+Ponto e virgula: ;
+Palavra reservada: end
+Palavra reservada: main
+Abre parênteses: (
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: let
+Palavra reservada: Float
+Identificador: i
+Ponto e virgula: ;
+Palavra reservada: let
+Palavra reservada: Float
+Identificador: resultado
+Ponto e virgula: ;
+Palavra reservada: let
+Palavra reservada: Float
+Identificador: x
+Ponto e virgula: ;
+Palavra reservada: let
+Palavra reservada: Float
+Identificador: y
+Ponto e virgula: ;
+Palavra reservada: let
+Palavra reservada: Float
+Identificador: z
+Ponto e virgula: ;
+Identificador: i
+Atribuição: :=
+Número: 0.0
+Ponto e virgula: ;
+Palavra reservada: while
+Abre parênteses: (
+Identificador: i
+Operador de comparação: <
+Número: 3.0
+Fecha parênteses: )
+Palavra reservada: begin
+Identificador: mostrar
+Abre parênteses: (
+Identificador: i
+Fecha parênteses: )
+Ponto e virgula: ;
+Identificador: i
+Atribuição: :=
+Identificador: i
+Operador aritmético: +
+Número: 1.0
+Ponto e virgula: ;
+Palavra reservada: end
+Ponto e virgula: ;
+Identificador: x
+Atribuição: :=
+Número: 2.0
+Ponto e virgula: ;
+Identificador: y
+Atribuição: :=
+Número: 3.0
+Ponto e virgula: ;
+Identificador: z
+Atribuição: :=
+Número: 4.0
+Ponto e virgula: ;
+Identificador: resultado
+Atribuição: :=
+Identificador: soma3
+Abre parênteses: (
+Identificador: x
+Vírgula: ,
+Identificador: y
+Vírgula: ,
+Identificador: z
+Fecha parênteses: )
+Ponto e virgula: ;
+Identificador: mostrar
+Abre parênteses: (
+Identificador: resultado
+Fecha parênteses: )
+Ponto e virgula: ;
+Palavra reservada: if
+Abre parênteses: (
+Identificador: resultado
+Operador de comparação: >
+Número: 5.0
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: if
+Abre parênteses: (
+Identificador: resultado
+Operador de comparação: <
+Número: 20.0
+Fecha parênteses: )
+Palavra reservada: begin
+Identificador: resultado
+Atribuição: :=
+Identificador: dobro
+Abre parênteses: (
+Identificador: resultado
+Fecha parênteses: )
+Ponto e virgula: ;
+Palavra reservada: end
+Ponto e virgula: ;
+Palavra reservada: end
+Ponto e virgula: ;
+Palavra reservada: print
+Identificador: resultado
+Ponto e virgula: ;
+Palavra reservada: end

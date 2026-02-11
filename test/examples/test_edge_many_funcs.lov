@@ -1,0 +1,37 @@
+def Float f1(Float x)
+begin
+  return x + 1.0;
+end
+
+def Float f2(Float x)
+begin
+  return x + 2.0;
+end
+
+def Float f3(Float x)
+begin
+  return x + 3.0;
+end
+
+def Float f4(Float x)
+begin
+  return x + 4.0;
+end
+
+def Void mostrar(Float v)
+begin
+  print v;
+end
+
+main ()
+begin
+  let Float r;
+  r := f1(0.0);
+  mostrar(r);
+  r := f2(0.0);
+  mostrar(r);
+  r := f3(0.0);
+  mostrar(r);
+  r := f4(0.0);
+  mostrar(r);
+end

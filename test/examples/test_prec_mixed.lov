@@ -1,0 +1,12 @@
+main ()
+begin
+  let Float a;
+  let Float b;
+  let Bool r;
+  a := 10.0;
+  b := 5.0;
+  r := a + b > 10.0 && a * b > 40.0;
+  print r;
+  r := a - b < 10.0 || a / b == 2.0;
+  print r;
+end

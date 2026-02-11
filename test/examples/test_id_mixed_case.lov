@@ -1,0 +1,9 @@
+main ()
+begin
+  let Float myVar;
+  let Bool isReady;
+  myVar := 42.0;
+  isReady := true;
+  print myVar;
+  print isReady;
+end

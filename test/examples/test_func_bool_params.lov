@@ -1,0 +1,16 @@
+def Bool negar(Bool v)
+begin
+  if (v) begin
+    return false;
+  end;
+  return true;
+end
+
+main ()
+begin
+  let Bool r;
+  r := negar(true);
+  print r;
+  r := negar(false);
+  print r;
+end

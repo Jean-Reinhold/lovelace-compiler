@@ -1,0 +1,16 @@
+main ()
+begin
+  let Float a;
+  let Float b;
+  a := 5.0;
+  b := 10.0;
+  if (a < b) begin
+    print 1.0;
+  end;
+  if (b > a) begin
+    print 2.0;
+  end;
+  if (a == a) begin
+    print 3.0;
+  end;
+end

@@ -1,0 +1,15 @@
+main ()
+begin
+  let Bool a;
+  let Bool b;
+  a := true;
+  b := false;
+  if (true) begin
+    print 1.0;
+  end;
+  if (a == true) begin
+    print 2.0;
+  end;
+  print a;
+  print b;
+end

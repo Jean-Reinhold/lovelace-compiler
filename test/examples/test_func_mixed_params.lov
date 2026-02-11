@@ -1,0 +1,16 @@
+def Float escolher(Bool cond, Float a, Float b)
+begin
+  if (cond) begin
+    return a;
+  end;
+  return b;
+end
+
+main ()
+begin
+  let Float r;
+  r := escolher(true, 10.0, 20.0);
+  print r;
+  r := escolher(false, 10.0, 20.0);
+  print r;
+end

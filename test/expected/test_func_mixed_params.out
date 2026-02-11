@@ -1,0 +1,65 @@
+Palavra reservada: def
+Palavra reservada: Float
+Identificador: escolher
+Abre parênteses: (
+Palavra reservada: Bool
+Identificador: cond
+Vírgula: ,
+Palavra reservada: Float
+Identificador: a
+Vírgula: ,
+Palavra reservada: Float
+Identificador: b
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: if
+Abre parênteses: (
+Identificador: cond
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: return
+Identificador: a
+Ponto e virgula: ;
+Palavra reservada: end
+Ponto e virgula: ;
+Palavra reservada: return
+Identificador: b
+Ponto e virgula: ;
+Palavra reservada: end
+Palavra reservada: main
+Abre parênteses: (
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: let
+Palavra reservada: Float
+Identificador: r
+Ponto e virgula: ;
+Identificador: r
+Atribuição: :=
+Identificador: escolher
+Abre parênteses: (
+Palavra reservada: true
+Vírgula: ,
+Número: 10.0
+Vírgula: ,
+Número: 20.0
+Fecha parênteses: )
+Ponto e virgula: ;
+Palavra reservada: print
+Identificador: r
+Ponto e virgula: ;
+Identificador: r
+Atribuição: :=
+Identificador: escolher
+Abre parênteses: (
+Palavra reservada: false
+Vírgula: ,
+Número: 10.0
+Vírgula: ,
+Número: 20.0
+Fecha parênteses: )
+Ponto e virgula: ;
+Palavra reservada: print
+Identificador: r
+Ponto e virgula: ;
+Palavra reservada: end

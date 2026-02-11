@@ -1,0 +1,6 @@
+main ()
+begin
+  let Float x;
+  x := 5.0 @ 3.0;
+  print x;
+end

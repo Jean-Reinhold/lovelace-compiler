@@ -1,0 +1,12 @@
+main ()
+begin
+  let Float a;
+  let Float b;
+  let Float c;
+  a := 5;
+  b := 100;
+  c := 0;
+  print a;
+  print b;
+  print c;
+end

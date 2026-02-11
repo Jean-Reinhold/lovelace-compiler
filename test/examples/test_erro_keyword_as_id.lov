@@ -1,0 +1,6 @@
+main ()
+begin
+  let Float begin;
+  begin := 5.0;
+  print begin;
+end

@@ -1,0 +1,8 @@
+main ()
+begin
+  print 1.0;
+  def Float foo()
+  begin
+    return 1.0;
+  end
+end

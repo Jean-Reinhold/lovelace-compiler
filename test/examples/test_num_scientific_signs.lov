@@ -1,0 +1,9 @@
+main ()
+begin
+  let Float a;
+  let Float b;
+  a := 1.0E+5;
+  b := 2.5E-3;
+  print a;
+  print b;
+end

@@ -1,0 +1,30 @@
+Palavra reservada: def
+Palavra reservada: Void
+Identificador: imprimir
+Abre parênteses: (
+Palavra reservada: Float
+Identificador: x
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: print
+Identificador: x
+Ponto e virgula: ;
+Palavra reservada: end
+Palavra reservada: main
+Abre parênteses: (
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: let
+Palavra reservada: Float
+Identificador: a
+Ponto e virgula: ;
+Identificador: a
+Atribuição: :=
+Número: 42.0
+Ponto e virgula: ;
+Identificador: imprimir
+Abre parênteses: (
+Identificador: a
+Fecha parênteses: )
+Ponto e virgula: ;
+Palavra reservada: end

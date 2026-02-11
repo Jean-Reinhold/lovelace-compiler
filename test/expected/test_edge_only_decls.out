@@ -1,0 +1,17 @@
+Palavra reservada: main
+Abre parênteses: (
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: let
+Palavra reservada: Float
+Identificador: x
+Ponto e virgula: ;
+Palavra reservada: let
+Palavra reservada: Float
+Identificador: y
+Ponto e virgula: ;
+Palavra reservada: let
+Palavra reservada: Bool
+Identificador: flag
+Ponto e virgula: ;
+Palavra reservada: end

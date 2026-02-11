@@ -1,0 +1,56 @@
+Palavra reservada: def
+Palavra reservada: Float
+Identificador: soma4
+Abre parênteses: (
+Palavra reservada: Float
+Identificador: a
+Vírgula: ,
+Palavra reservada: Float
+Identificador: b
+Vírgula: ,
+Palavra reservada: Float
+Identificador: c
+Vírgula: ,
+Palavra reservada: Float
+Identificador: d
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: return
+Abre parênteses: (
+Abre parênteses: (
+Identificador: a
+Operador aritmético: +
+Identificador: b
+Fecha parênteses: )
+Operador aritmético: +
+Identificador: c
+Fecha parênteses: )
+Operador aritmético: +
+Identificador: d
+Ponto e virgula: ;
+Palavra reservada: end
+Palavra reservada: main
+Abre parênteses: (
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: let
+Palavra reservada: Float
+Identificador: resultado
+Ponto e virgula: ;
+Identificador: resultado
+Atribuição: :=
+Identificador: soma4
+Abre parênteses: (
+Número: 1.0
+Vírgula: ,
+Número: 2.0
+Vírgula: ,
+Número: 3.0
+Vírgula: ,
+Número: 4.0
+Fecha parênteses: )
+Ponto e virgula: ;
+Palavra reservada: print
+Identificador: resultado
+Ponto e virgula: ;
+Palavra reservada: end

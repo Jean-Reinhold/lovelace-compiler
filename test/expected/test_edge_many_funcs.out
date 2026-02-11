@@ -1,0 +1,125 @@
+Palavra reservada: def
+Palavra reservada: Float
+Identificador: f1
+Abre parênteses: (
+Palavra reservada: Float
+Identificador: x
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: return
+Identificador: x
+Operador aritmético: +
+Número: 1.0
+Ponto e virgula: ;
+Palavra reservada: end
+Palavra reservada: def
+Palavra reservada: Float
+Identificador: f2
+Abre parênteses: (
+Palavra reservada: Float
+Identificador: x
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: return
+Identificador: x
+Operador aritmético: +
+Número: 2.0
+Ponto e virgula: ;
+Palavra reservada: end
+Palavra reservada: def
+Palavra reservada: Float
+Identificador: f3
+Abre parênteses: (
+Palavra reservada: Float
+Identificador: x
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: return
+Identificador: x
+Operador aritmético: +
+Número: 3.0
+Ponto e virgula: ;
+Palavra reservada: end
+Palavra reservada: def
+Palavra reservada: Float
+Identificador: f4
+Abre parênteses: (
+Palavra reservada: Float
+Identificador: x
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: return
+Identificador: x
+Operador aritmético: +
+Número: 4.0
+Ponto e virgula: ;
+Palavra reservada: end
+Palavra reservada: def
+Palavra reservada: Void
+Identificador: mostrar
+Abre parênteses: (
+Palavra reservada: Float
+Identificador: v
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: print
+Identificador: v
+Ponto e virgula: ;
+Palavra reservada: end
+Palavra reservada: main
+Abre parênteses: (
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: let
+Palavra reservada: Float
+Identificador: r
+Ponto e virgula: ;
+Identificador: r
+Atribuição: :=
+Identificador: f1
+Abre parênteses: (
+Número: 0.0
+Fecha parênteses: )
+Ponto e virgula: ;
+Identificador: mostrar
+Abre parênteses: (
+Identificador: r
+Fecha parênteses: )
+Ponto e virgula: ;
+Identificador: r
+Atribuição: :=
+Identificador: f2
+Abre parênteses: (
+Número: 0.0
+Fecha parênteses: )
+Ponto e virgula: ;
+Identificador: mostrar
+Abre parênteses: (
+Identificador: r
+Fecha parênteses: )
+Ponto e virgula: ;
+Identificador: r
+Atribuição: :=
+Identificador: f3
+Abre parênteses: (
+Número: 0.0
+Fecha parênteses: )
+Ponto e virgula: ;
+Identificador: mostrar
+Abre parênteses: (
+Identificador: r
+Fecha parênteses: )
+Ponto e virgula: ;
+Identificador: r
+Atribuição: :=
+Identificador: f4
+Abre parênteses: (
+Número: 0.0
+Fecha parênteses: )
+Ponto e virgula: ;
+Identificador: mostrar
+Abre parênteses: (
+Identificador: r
+Fecha parênteses: )
+Ponto e virgula: ;
+Palavra reservada: end

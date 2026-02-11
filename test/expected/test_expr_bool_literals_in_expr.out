@@ -1,0 +1,49 @@
+Palavra reservada: main
+Abre parênteses: (
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: let
+Palavra reservada: Bool
+Identificador: a
+Ponto e virgula: ;
+Palavra reservada: let
+Palavra reservada: Bool
+Identificador: b
+Ponto e virgula: ;
+Identificador: a
+Atribuição: :=
+Palavra reservada: true
+Ponto e virgula: ;
+Identificador: b
+Atribuição: :=
+Palavra reservada: false
+Ponto e virgula: ;
+Palavra reservada: if
+Abre parênteses: (
+Palavra reservada: true
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: print
+Número: 1.0
+Ponto e virgula: ;
+Palavra reservada: end
+Ponto e virgula: ;
+Palavra reservada: if
+Abre parênteses: (
+Identificador: a
+Operador de comparação: ==
+Palavra reservada: true
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: print
+Número: 2.0
+Ponto e virgula: ;
+Palavra reservada: end
+Ponto e virgula: ;
+Palavra reservada: print
+Identificador: a
+Ponto e virgula: ;
+Palavra reservada: print
+Identificador: b
+Ponto e virgula: ;
+Palavra reservada: end

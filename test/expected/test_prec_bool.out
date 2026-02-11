@@ -1,0 +1,31 @@
+Palavra reservada: main
+Abre parênteses: (
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: let
+Palavra reservada: Bool
+Identificador: r
+Ponto e virgula: ;
+Identificador: r
+Atribuição: :=
+Palavra reservada: true
+Operador lógico: ||
+Palavra reservada: false
+Operador lógico: &&
+Palavra reservada: false
+Ponto e virgula: ;
+Palavra reservada: print
+Identificador: r
+Ponto e virgula: ;
+Identificador: r
+Atribuição: :=
+Palavra reservada: false
+Operador lógico: ||
+Palavra reservada: true
+Operador lógico: &&
+Palavra reservada: true
+Ponto e virgula: ;
+Palavra reservada: print
+Identificador: r
+Ponto e virgula: ;
+Palavra reservada: end

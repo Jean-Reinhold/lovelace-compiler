@@ -1,0 +1,61 @@
+Palavra reservada: main
+Abre parênteses: (
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: let
+Palavra reservada: Float
+Identificador: a
+Ponto e virgula: ;
+Palavra reservada: let
+Palavra reservada: Float
+Identificador: b
+Ponto e virgula: ;
+Palavra reservada: let
+Palavra reservada: Float
+Identificador: r
+Ponto e virgula: ;
+Identificador: a
+Atribuição: :=
+Número: 10.0
+Ponto e virgula: ;
+Identificador: b
+Atribuição: :=
+Número: 3.0
+Ponto e virgula: ;
+Identificador: r
+Atribuição: :=
+Identificador: a
+Operador aritmético: +
+Identificador: b
+Ponto e virgula: ;
+Palavra reservada: print
+Identificador: r
+Ponto e virgula: ;
+Identificador: r
+Atribuição: :=
+Identificador: a
+Operador aritmético: -
+Identificador: b
+Ponto e virgula: ;
+Palavra reservada: print
+Identificador: r
+Ponto e virgula: ;
+Identificador: r
+Atribuição: :=
+Identificador: a
+Operador aritmético: *
+Identificador: b
+Ponto e virgula: ;
+Palavra reservada: print
+Identificador: r
+Ponto e virgula: ;
+Identificador: r
+Atribuição: :=
+Identificador: a
+Operador aritmético: /
+Identificador: b
+Ponto e virgula: ;
+Palavra reservada: print
+Identificador: r
+Ponto e virgula: ;
+Palavra reservada: end

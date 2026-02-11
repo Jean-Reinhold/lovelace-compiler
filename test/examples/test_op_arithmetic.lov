@@ -1,0 +1,16 @@
+main ()
+begin
+  let Float a;
+  let Float b;
+  let Float r;
+  a := 10.0;
+  b := 3.0;
+  r := a + b;
+  print r;
+  r := a - b;
+  print r;
+  r := a * b;
+  print r;
+  r := a / b;
+  print r;
+end
