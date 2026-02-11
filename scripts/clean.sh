@@ -46,5 +46,14 @@ if [ -n "$STRAY_C" ]; then
     done
 fi
 
+# Remove AST diagram files generated in test/examples/
+STRAY_AST=$(find test/examples -name "*_ast.dot" -o -name "*_ast.png" -o -name "*_ast.svg" 2>/dev/null)
+if [ -n "$STRAY_AST" ]; then
+    echo "$STRAY_AST" | while read -r f; do
+        rm -f "$f"
+        echo "  Removed $f"
+    done
+fi
+
 echo ""
 echo "Clean complete."

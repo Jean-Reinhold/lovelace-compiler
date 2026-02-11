@@ -112,6 +112,11 @@ $RECYCLE.BIN/
 # Test output files
 /tmp/*_actual.out
 
+# AST diagram files
+*_ast.dot
+*_ast.png
+*_ast.svg
+
 # Generated test report
 test/TEST_REPORT.md
 

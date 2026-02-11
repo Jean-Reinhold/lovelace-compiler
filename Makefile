@@ -1,7 +1,7 @@
 # Lovelace Compiler -- Development Makefile
 # Usage: make [target] [FILTER=pattern] [FILE=path]
 
-.PHONY: build test test-lexer test-parser test-compiler clean report baseline run watch help
+.PHONY: build test test-lexer test-parser test-compiler clean report baseline run ast watch help
 
 # Default target
 all: build
@@ -64,6 +64,15 @@ ifdef FILE
 	@bash scripts/run.sh $(FILE)
 endif
 
+ast:
+ifndef FILE
+	@echo "Usage: make ast FILE=test/examples/exemplo.lov [FORMAT=text|dot|png|svg]"
+	@exit 1
+endif
+ifdef FILE
+	@bash scripts/ast_diagram.sh $(FILE) --format $(or $(FORMAT),text)
+endif
+
 watch:
 	@bash scripts/watch.sh
 
@@ -85,6 +94,7 @@ help:
 	@echo "  make report                Generate test/TEST_REPORT.md"
 	@echo "  make baseline              Regenerate expected output baselines"
 	@echo "  make run FILE=<path>       Run a .lov file through all 3 phases"
+	@echo "  make ast FILE=<path>       Generate AST diagram (FORMAT=text|dot|png|svg)"
 	@echo "  make watch                 Rebuild + test on src/ file changes"
 	@echo "  make help                  Show this help message"
 	@echo ""
