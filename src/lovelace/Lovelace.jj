@@ -16,10 +16,12 @@ PARSER_BEGIN(LovelaceParser)
 package lovelace;
 
 import java.io.*;
+import java.util.ArrayList;
+import ast.*;
 
 public class LovelaceParser {
-    public void parse() throws ParseException {
-        Program();
+    public Prog parse() throws ParseException {
+        return Program();
     }
 }
 PARSER_END(LovelaceParser)
@@ -80,350 +82,401 @@ TOKEN : {
 
 // Identificadores: letra seguida de letras/dígitos, pode ter sublinhados
 TOKEN : {
-    < IDENTIFIER : 
-        ["a"-"z","A"-"Z"] 
-        (["a"-"z","A"-"Z","0"-"9"])* 
-        ("_" (["a"-"z","A"-"Z","0"-"9"])+)* 
+    < IDENTIFIER :
+        ["a"-"z","A"-"Z"]
+        (["a"-"z","A"-"Z","0"-"9"])*
+        ("_" (["a"-"z","A"-"Z","0"-"9"])+)*
     >
 }
 
 // Programa: funções opcionais + main obrigatória
-void Program():
+Prog Program():
 {
+    ArrayList<Fun> funcs;
+    Main main;
 }
 {
-    FunctionList()
-    MainFunction()
+    funcs = FunctionList()
+    main = MainFunction()
+    { return new Prog(main, funcs); }
 }
 
 // Lista de funções (zero ou mais)
-void FunctionList():
+ArrayList<Fun> FunctionList():
 {
+    ArrayList<Fun> funcs = new ArrayList<Fun>();
+    Fun f;
 }
 {
     (
-        Function()
+        f = Function()
+        { funcs.add(f); }
     )*
+    { return funcs; }
 }
 
 // Definição de função: def Tipo nome(params) begin ... end
-void Function():
+Fun Function():
 {
+    String retorno;
+    Token nome;
+    ArrayList<ParamFormalFun> params = new ArrayList<ParamFormalFun>();
+    ArrayList<VarDecl> vars;
+    ArrayList<Comando> body;
 }
 {
     <DEF>
-    Type()
-    <IDENTIFIER>
+    retorno = Type()
+    nome = <IDENTIFIER>
     <LPAREN>
     (
-        ParameterList()
+        params = ParameterList()
     )?
     <RPAREN>
     <BEGIN>
-    VarDecl()
-    StatementList()
+    vars = VarDecl()
+    body = StatementList()
     <END>
+    { return new Fun(nome.image, params, retorno, vars, body); }
 }
 
 // Função main: main() begin ... end
-void MainFunction():
+Main MainFunction():
 {
+    ArrayList<VarDecl> vars;
+    ArrayList<Comando> coms;
 }
 {
     <MAIN>
     <LPAREN>
     <RPAREN>
     <BEGIN>
-    VarDecl()
-    StatementList()
+    vars = VarDecl()
+    coms = StatementList()
     <END>
+    { return new Main(vars, coms); }
 }
 
 // Lista de parâmetros: Tipo id, Tipo id, ...
-void ParameterList():
+ArrayList<ParamFormalFun> ParameterList():
 {
+    ArrayList<ParamFormalFun> params = new ArrayList<ParamFormalFun>();
+    ParamFormalFun p;
 }
 {
-    Parameter()
+    p = Parameter() { params.add(p); }
     (
         <COMMA>
-        Parameter()
+        p = Parameter() { params.add(p); }
     )*
+    { return params; }
 }
 
 // Parâmetro: Tipo identificador
-void Parameter():
+ParamFormalFun Parameter():
 {
+    String tipo;
+    Token nome;
 }
 {
-    Type()
-    <IDENTIFIER>
+    tipo = Type()
+    nome = <IDENTIFIER>
+    { return new ParamFormalFun(tipo, nome.image); }
 }
 
 // Tipos: Float, Bool ou Void
-void Type():
+String Type():
 {
+    Token t;
 }
 {
     (
-        <FLOAT>
-        | <BOOL>
-        | <VOID>
+        t = <FLOAT>
+        | t = <BOOL>
+        | t = <VOID>
     )
+    { return t.image; }
 }
 
 // Declarações de variáveis: let Tipo id; (zero ou mais)
-void VarDecl():
+ArrayList<VarDecl> VarDecl():
 {
+    ArrayList<VarDecl> vars = new ArrayList<VarDecl>();
+    String tipo;
+    Token id;
 }
 {
     (
         LOOKAHEAD(2)
         <LET>
-        Type()
-        <IDENTIFIER>
+        tipo = Type()
+        id = <IDENTIFIER>
         <SEMICOLON>
+        { vars.add(new VarDecl(tipo, id.image)); }
     )*
+    { return vars; }
 }
 
 // Lista de comandos (zero ou mais)
-void StatementList():
+ArrayList<Comando> StatementList():
 {
+    ArrayList<Comando> coms = new ArrayList<Comando>();
+    Comando c;
 }
 {
     (
         LOOKAHEAD(1)
-        Statement()
+        c = Statement()
+        { coms.add(c); }
     )*
+    { return coms; }
 }
 
-// Comando: if, while, print, read, return, atribuição ou declaração
-void Statement():
+// Comando: if, while, print, return, ou identificador (atribuição/read/chamada)
+Comando Statement():
 {
+    Comando c;
 }
 {
     (
-        IfStatement()
-        | WhileStatement()
-        | PrintStatement()
-        | ReadStatement()
-        | ReturnStatement()
-        | AssignStatement()
-        | DeclareStatement()
+        c = IfStatement()
+        | c = WhileStatement()
+        | c = PrintStatement()
+        | c = ReturnStatement()
+        | c = IdentifierStatement()
     )
+    { return c; }
 }
 
 // Comando if: if (expr) begin ... end;
-void IfStatement():
+CIf IfStatement():
 {
+    Token t;
+    Exp exp;
+    ArrayList<Comando> bloco;
 }
 {
-    <IF>
+    t = <IF>
     <LPAREN>
-    Expression()
+    exp = Expression()
     <RPAREN>
     <BEGIN>
-    StatementList()
+    bloco = StatementList()
     <END>
     <SEMICOLON>
+    { return new CIf(t.beginLine, exp, bloco); }
 }
 
 // Comando while: while (expr) begin ... end;
-void WhileStatement():
+CWhile WhileStatement():
 {
+    Token t;
+    Exp exp;
+    ArrayList<Comando> bloco;
 }
 {
-    <WHILE>
+    t = <WHILE>
     <LPAREN>
-    Expression()
+    exp = Expression()
     <RPAREN>
     <BEGIN>
-    StatementList()
+    bloco = StatementList()
     <END>
     <SEMICOLON>
+    { return new CWhile(t.beginLine, exp, bloco); }
 }
 
 // Comando print: print expr;
-void PrintStatement():
+CPrint PrintStatement():
 {
+    Token t;
+    Exp exp;
 }
 {
-    <PRINT>
-    Expression()
+    t = <PRINT>
+    exp = Expression()
     <SEMICOLON>
-}
-
-// Comando read: read();
-void ReadStatement():
-{
-}
-{
-    <READ>
-    <LPAREN>
-    <RPAREN>
-    <SEMICOLON>
+    { return new CPrint(t.beginLine, exp); }
 }
 
 // Comando return: return expr; (expr opcional)
-void ReturnStatement():
+CReturn ReturnStatement():
 {
+    Token t;
+    Exp exp = null;
 }
 {
-    <RETURN>
+    t = <RETURN>
     (
-        Expression()
+        exp = Expression()
     )?
     <SEMICOLON>
+    { return new CReturn(t.beginLine, exp); }
 }
 
-// Atribuição: id := expr;
-void AssignStatement():
+// Comando com identificador: atribuição, read ou chamada de função
+Comando IdentifierStatement():
 {
+    Token id;
+    Exp exp;
+    ArrayList<Exp> args = new ArrayList<Exp>();
+    Comando cmd;
 }
 {
-    <IDENTIFIER>
-    <ASSIGN>
-    Expression()
-    <SEMICOLON>
-}
-
-// Declaração de variável: let Tipo id;
-void DeclareStatement():
-{
-}
-{
-    <LET>
-    Type()
-    <IDENTIFIER>
-    <SEMICOLON>
+    id = <IDENTIFIER>
+    (
+        <ASSIGN>
+        (
+            LOOKAHEAD(2)
+            <READ> <LPAREN> <RPAREN> <SEMICOLON>
+            { cmd = new CReadInput(id.beginLine, id.image); }
+            |
+            exp = Expression() <SEMICOLON>
+            { cmd = new CAtribuicao(id.beginLine, id.image, exp); }
+        )
+        |
+        <LPAREN> ( args = ExpressionList() )? <RPAREN> <SEMICOLON>
+        { cmd = new CChamadaFun(id.beginLine, id.image, args); }
+    )
+    { return cmd; }
 }
 
 // Expressão (delega para expressões booleanas)
-void Expression():
+Exp Expression():
 {
+    Exp e;
 }
 {
-    BooleanOrExpression()
+    e = BooleanOrExpression()
+    { return e; }
 }
 
 // Expressão OR: expr || expr || ...
-void BooleanOrExpression():
+Exp BooleanOrExpression():
 {
+    Exp left, right;
 }
 {
-    BooleanAndExpression()
+    left = BooleanAndExpression()
     (
         <OR>
-        BooleanAndExpression()
+        right = BooleanAndExpression()
+        { left = new EOpExp("||", left, right); }
     )*
+    { return left; }
 }
 
 // Expressão AND: expr && expr && ...
-void BooleanAndExpression():
+Exp BooleanAndExpression():
 {
+    Exp left, right;
 }
 {
-    ComparisonExpression()
+    left = ComparisonExpression()
     (
         <AND>
-        ComparisonExpression()
+        right = ComparisonExpression()
+        { left = new EOpExp("&&", left, right); }
     )*
+    { return left; }
 }
 
 // Comparações: expr == expr, expr < expr, expr > expr
-void ComparisonExpression():
+Exp ComparisonExpression():
 {
+    Exp left, right;
+    Token op;
 }
 {
-    ArithmeticExpression()
+    left = ArithmeticExpression()
     (
-        (
-            <EQ>
-            | <LT>
-            | <GT>
-        )
-        ArithmeticExpression()
+        ( op = <EQ> | op = <LT> | op = <GT> )
+        right = ArithmeticExpression()
+        { left = new EOpExp(op.image, left, right); }
     )*
+    { return left; }
 }
 
 // Expressões aritméticas: term + term, term - term
-void ArithmeticExpression():
+Exp ArithmeticExpression():
 {
+    Exp left, right;
+    Token op;
 }
 {
-    Term()
+    left = Term()
     (
-        (
-            <PLUS>
-            | <MINUS>
-        )
-        Term()
+        ( op = <PLUS> | op = <MINUS> )
+        right = Term()
+        { left = new EOpExp(op.image, left, right); }
     )*
+    { return left; }
 }
 
 // Termos: factor * factor, factor / factor
-void Term():
+Exp Term():
 {
+    Exp left, right;
+    Token op;
 }
 {
-    Factor()
+    left = Factor()
     (
-        (
-            <MULT>
-            | <DIV>
-        )
-        Factor()
+        ( op = <MULT> | op = <DIV> )
+        right = Factor()
+        { left = new EOpExp(op.image, left, right); }
     )*
+    { return left; }
 }
 
-// Fatores: (expr), id, número, true, false, chamada de função, read()
-void Factor():
+// Fatores: (expr), id, número, true, false, chamada de função
+Exp Factor():
 {
-    Token idToken;
+    Token t;
+    Exp e;
+    ArrayList<Exp> args = new ArrayList<Exp>();
 }
 {
     (
         <LPAREN>
-        Expression()
+        e = Expression()
         <RPAREN>
         |
         LOOKAHEAD(2)
-        idToken = <IDENTIFIER>
+        t = <IDENTIFIER>
         <LPAREN>
-        {
-            // é uma chamada de função
-        }
         (
-            ExpressionList()
+            args = ExpressionList()
         )?
         <RPAREN>
+        { e = new EChamadaFun(t.image, args); }
         |
-        idToken = <IDENTIFIER>
-        {
-            // só um identificador
-        }
+        t = <IDENTIFIER>
+        { e = new EVar(t.image); }
         |
-        <NUMBER>
+        t = <NUMBER>
+        { e = new EFloat(Float.parseFloat(t.image)); }
         |
         <TRUE>
+        { e = new ETrue(); }
         |
         <FALSE>
-        |
-        <READ>
-        <LPAREN>
-        <RPAREN>
+        { e = new EFalse(); }
     )
+    { return e; }
 }
 
 // Lista de expressões: expr, expr, expr, ...
-void ExpressionList():
+ArrayList<Exp> ExpressionList():
 {
+    ArrayList<Exp> args = new ArrayList<Exp>();
+    Exp e;
 }
 {
-    Expression()
+    e = Expression() { args.add(e); }
     (
         <COMMA>
-        Expression()
+        e = Expression() { args.add(e); }
     )*
+    { return args; }
 }
-

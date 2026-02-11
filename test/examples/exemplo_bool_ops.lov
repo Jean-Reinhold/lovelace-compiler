@@ -1,0 +1,18 @@
+main ()
+begin
+  let Bool a;
+  let Bool b;
+  let Bool c;
+
+  a := true;
+  b := false;
+  c := a && b;
+  print c;
+
+  c := a || b;
+  print c;
+
+  if (a && (true || false)) begin
+    print 1.0;
+  end;
+end

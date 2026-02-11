@@ -5,7 +5,7 @@ PROJECT_ROOT="$( cd "$SCRIPT_DIR/.." && pwd )"
 
 cd "$PROJECT_ROOT"
 
-echo "Building Lovelace Lexical Analyzer..."
+echo "Building Lovelace Compiler..."
 
 if ! command -v javacc &> /dev/null; then
     echo "Error: javacc command not found."
@@ -16,19 +16,19 @@ fi
 
 mkdir -p src/lovelace
 
-echo "Generating lexer from src/lovelace/Lovelace.jj..."
+echo "Generating parser from src/lovelace/Lovelace.jj..."
 cd src/lovelace
 javacc Lovelace.jj
 
 if [ $? -ne 0 ]; then
-    echo "Error: Failed to generate lexer from JavaCC grammar."
+    echo "Error: Failed to generate parser from JavaCC grammar."
     exit 1
 fi
 
 cd ../..
 
 echo "Compiling Java files..."
-javac -d . $(find src/lovelace -name "*.java")
+javac -d . $(find src -name "*.java")
 
 if [ $? -ne 0 ]; then
     echo "Error: Failed to compile Java files."
@@ -37,11 +37,15 @@ fi
 
 echo "Build completed successfully!"
 echo ""
-echo "To run the analyzer, use:"
+echo "To run the lexical analyzer:"
 echo "  java lovelace.Lovelace <arquivo.lov>"
 echo ""
+echo "To run the syntax analyzer:"
+echo "  java lovelace.LovelaceSintatico <arquivo.lov>"
+echo ""
+echo "To run the compiler (generates C code):"
+echo "  java lovelace.LovelaceCompiler <arquivo.lov>"
+echo ""
 echo "Examples:"
-echo "  java lovelace.Lovelace test/examples/exemplo.lov"
-echo "  java lovelace.Lovelace test/examples/exemplo1.lov"
-echo "  java lovelace.Lovelace test/examples/exemplo2.lov"
-
+echo "  java lovelace.LovelaceCompiler test/examples/exemplo.lov"
+echo "  java lovelace.LovelaceCompiler test/examples/exemplo2.lov"

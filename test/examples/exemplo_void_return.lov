@@ -1,0 +1,9 @@
+def Void nada()
+begin
+  return;
+end
+
+main ()
+begin
+  nada();
+end

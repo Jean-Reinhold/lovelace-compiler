@@ -1,0 +1,13 @@
+main ()
+begin
+  let Float x;
+  x := 10.0;
+  if (x > 0.0) begin
+    if (x > 5.0) begin
+      while (x > 5.0) begin
+        x := x - 1.0;
+      end;
+    end;
+  end;
+  print x;
+end

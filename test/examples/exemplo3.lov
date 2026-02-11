@@ -1,0 +1,53 @@
+def Float soma(Float a, Float b)
+begin
+  return (a + b);
+end
+
+def Float fatorial(Float n)
+begin
+  let Float resultado;
+  resultado := 1.0;
+  while (n > 1.0) begin
+    resultado := resultado * n;
+    n := n - 1.0;
+  end;
+  return resultado;
+end
+
+def Bool ehPositivo(Float x)
+begin
+  if (x > 0.0) begin
+    return true;
+  end;
+  return false;
+end
+
+main ()
+begin
+  let Float a;
+  let Float b;
+  let Float total;
+  let Float fat;
+  let Bool positivo;
+
+  a := 5.0;
+  b := 3.0;
+
+  total := soma(a, b);
+  print total;
+
+  fat := fatorial(5.0);
+  print fat;
+
+  positivo := ehPositivo(total);
+  print positivo;
+
+  if (positivo && (total > 0.0)) begin
+    print 1.0;
+  end;
+
+  a := read();
+  if (ehPositivo(a)) begin
+    print soma(a, b);
+  end;
+end

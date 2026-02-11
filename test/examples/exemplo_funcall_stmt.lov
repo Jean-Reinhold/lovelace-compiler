@@ -1,0 +1,11 @@
+def Void imprimir(Float x)
+begin
+  print x;
+end
+
+main ()
+begin
+  let Float a;
+  a := 42.0;
+  imprimir(a);
+end
