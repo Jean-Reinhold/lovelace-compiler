@@ -55,8 +55,10 @@ run_tests() {
 
         if [ $EXIT_CODE -ne 0 ]; then
             print_fail "$test" "$desc" "compiler error"
-            if [[ "${VERBOSE:-0}" == "1" && -n "$OUTPUT" ]]; then
-                printf "         ${C_DIM}%s${C_RESET}\n" "$OUTPUT"
+            print_file_excerpt "Input ($INPUT_FILE)" "$INPUT_FILE"
+            if [[ -n "$OUTPUT" ]]; then
+                printf "\n         ${C_DIM}── Compiler output ──${C_RESET}\n"
+                printf '%s\n' "$OUTPUT" | sed 's/^/         /'
             fi
             FAILED=$((FAILED + 1))
             continue
@@ -64,6 +66,7 @@ run_tests() {
 
         if [ ! -f "$GENERATED_FILE" ]; then
             print_fail "$test" "$desc" "no .c file generated"
+            print_file_excerpt "Input ($INPUT_FILE)" "$INPUT_FILE"
             FAILED=$((FAILED + 1))
             continue
         fi
@@ -85,6 +88,7 @@ run_tests() {
                 verbose_file "Generated C" "$GENERATED_FILE"
             else
                 print_fail "$test" "$desc" "output mismatch"
+                print_file_excerpt "Input ($INPUT_FILE)" "$INPUT_FILE"
                 colored_diff "$EXPECTED_FILE" "$GENERATED_FILE"
                 FAILED=$((FAILED + 1))
             fi
@@ -130,6 +134,7 @@ run_tests() {
             verbose_file "Input" "$INPUT_FILE"
         else
             print_fail "$test" "$desc" "should have reported an error"
+            print_file_excerpt "Input ($INPUT_FILE)" "$INPUT_FILE"
             FAILED=$((FAILED + 1))
         fi
 

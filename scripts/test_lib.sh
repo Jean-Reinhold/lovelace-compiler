@@ -73,6 +73,29 @@ print_skip() {
 }
 
 # ---------------------------------------------------------------------------
+# print_file_excerpt LABEL FILE_PATH [MAX_LINES]
+# Always shown (not gated by VERBOSE). Dimmed, indented, capped.
+# ---------------------------------------------------------------------------
+print_file_excerpt() {
+    local label="$1"
+    local file_path="$2"
+    local max_lines="${3:-20}"
+
+    printf "\n         ${C_DIM}── %s ──${C_RESET}\n" "$label"
+    if [[ ! -f "$file_path" ]]; then
+        printf "         ${C_DIM}(file not found)${C_RESET}\n"
+        return
+    fi
+    local total_lines
+    total_lines=$(wc -l < "$file_path" | tr -d ' ')
+    cat -n "$file_path" | head -n "$max_lines" | sed 's/^/         /'
+    if (( total_lines > max_lines )); then
+        local remaining=$((total_lines - max_lines))
+        printf "         ${C_DIM}... (%d more lines)${C_RESET}\n" "$remaining"
+    fi
+}
+
+# ---------------------------------------------------------------------------
 # colored_diff FILE_A FILE_B
 # ---------------------------------------------------------------------------
 colored_diff() {

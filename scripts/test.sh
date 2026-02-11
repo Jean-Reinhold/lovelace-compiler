@@ -66,6 +66,7 @@ run_tests() {
             verbose_file "Actual" "$ACTUAL_FILE"
         else
             print_fail "$test" "$desc" "output mismatch"
+            print_file_excerpt "Input ($INPUT_FILE)" "$INPUT_FILE"
             colored_diff "$EXPECTED_FILE" "$ACTUAL_FILE"
             FAILED=$((FAILED + 1))
         fi

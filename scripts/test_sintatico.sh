@@ -71,15 +71,18 @@ run_tests() {
                     verbose_file "Actual" "$ACTUAL_FILE"
                 else
                     print_fail "$test" "$desc" "output mismatch"
+                    print_file_excerpt "Input ($INPUT_FILE)" "$INPUT_FILE"
                     colored_diff "$EXPECTED_FILE" "$ACTUAL_FILE"
                     FAILED=$((FAILED + 1))
                 fi
             else
                 print_fail "$test" "$desc" "no success message in output"
+                print_file_excerpt "Input ($INPUT_FILE)" "$INPUT_FILE"
                 FAILED=$((FAILED + 1))
             fi
         else
             print_fail "$test" "$desc" "parser returned error for valid program"
+            print_file_excerpt "Input ($INPUT_FILE)" "$INPUT_FILE"
             FAILED=$((FAILED + 1))
         fi
     done
@@ -120,12 +123,14 @@ run_tests() {
                     verbose_file "Actual" "$ACTUAL_FILE"
                 else
                     print_fail "$test" "$desc" "error message mismatch"
+                    print_file_excerpt "Input ($INPUT_FILE)" "$INPUT_FILE"
                     colored_diff "$EXPECTED_FILE" "$ACTUAL_FILE"
                     FAILED=$((FAILED + 1))
                 fi
             fi
         else
             print_fail "$test" "$desc" "should have reported an error"
+            print_file_excerpt "Input ($INPUT_FILE)" "$INPUT_FILE"
             FAILED=$((FAILED + 1))
         fi
     done
