@@ -278,15 +278,21 @@ cat >> "$REPORT_FILE" << 'HOWTO'
 
 ```bash
 # Build the compiler
-./scripts/build.sh
+make build
+
+# Run all tests
+make test
 
 # Run individual test suites
-./scripts/test.sh              # lexer tests only
-./scripts/test_sintatico.sh    # parser tests only
-./scripts/test_compiler.sh     # compiler tests only
+make test-lexer       # lexer tests only
+make test-parser      # parser tests only
+make test-compiler    # compiler tests only
+
+# Run only tests matching a pattern
+make test FILTER=exemplo
 
 # Regenerate this report
-./scripts/test_report.sh
+make report
 ```
 
 The report is written to `test/TEST_REPORT.md`.
@@ -294,8 +300,7 @@ The report is written to `test/TEST_REPORT.md`.
 To regenerate all expected output baselines from scratch:
 
 ```bash
-# (Warning: overwrites existing expected files only if missing)
-./scripts/generate_expected.sh
+make baseline
 ```
 HOWTO
 

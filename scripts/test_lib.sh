@@ -192,3 +192,68 @@ print_warning() {
     local msg="$1"
     printf "         ${C_YELLOW}${C_DIM}%s${C_RESET}\n" "$msg"
 }
+
+# ---------------------------------------------------------------------------
+# Timing helpers
+# ---------------------------------------------------------------------------
+_SUITE_START=0
+
+start_timer() {
+    _SUITE_START=$(date +%s)
+}
+
+# print_timing -- show elapsed time for a suite
+print_timing() {
+    local end=$(date +%s)
+    local elapsed=$(( end - _SUITE_START ))
+    local mins=$(( elapsed / 60 ))
+    local secs=$(( elapsed % 60 ))
+    if (( mins > 0 )); then
+        printf "${C_DIM}  Time: %dm %ds${C_RESET}\n" "$mins" "$secs"
+    else
+        printf "${C_DIM}  Time: %ds${C_RESET}\n" "$secs"
+    fi
+}
+
+# ---------------------------------------------------------------------------
+# Grand summary (across multiple phases)
+# ---------------------------------------------------------------------------
+# Usage: print_grand_summary "Phase1:pass:fail" "Phase2:pass:fail" ...
+print_grand_summary() {
+    local grand_pass=0
+    local grand_fail=0
+
+    echo ""
+    echo "=================================================="
+    echo "${C_BOLD}Grand Summary${C_RESET}"
+    echo "=================================================="
+
+    for entry in "$@"; do
+        IFS=':' read -r phase pass fail <<< "$entry"
+        local total=$((pass + fail))
+        grand_pass=$((grand_pass + pass))
+        grand_fail=$((grand_fail + fail))
+
+        if (( fail > 0 )); then
+            printf "  %-12s ${C_GREEN}%d${C_RESET} passed, ${C_RED}%d${C_RESET} failed  (/%d)\n" "$phase" "$pass" "$fail" "$total"
+        else
+            printf "  %-12s ${C_GREEN}%d${C_RESET} passed  (/%d)\n" "$phase" "$pass" "$total"
+        fi
+    done
+
+    local grand_total=$((grand_pass + grand_fail))
+    echo "  ------------------------------------------"
+    printf "  %-12s ${C_GREEN}%d${C_RESET} passed" "Total" "$grand_pass"
+    if (( grand_fail > 0 )); then
+        printf ", ${C_RED}%d${C_RESET} failed" "$grand_fail"
+    fi
+    printf "  (/%d)\n" "$grand_total"
+    echo ""
+
+    if (( grand_fail == 0 )); then
+        echo "${C_GREEN}All ${grand_total} checks passed.${C_RESET}"
+    else
+        echo "${C_RED}${grand_fail} of ${grand_total} checks failed.${C_RESET}"
+    fi
+    echo ""
+}

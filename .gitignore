@@ -12,6 +12,7 @@ src/lovelace/SimpleCharStream.java
 
 # Package directories with compiled classes (root level only)
 /lovelace/
+/ast/
 
 # Log files
 *.log
