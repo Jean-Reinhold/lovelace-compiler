@@ -1,3 +1,4 @@
+// Zero-argument functions used inside expressions
 def Float pi()
 begin
   return 3.14;

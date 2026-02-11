@@ -1,3 +1,4 @@
+// Using = instead of := for assignment
 main ()
 begin
   let Float x;

@@ -1,3 +1,4 @@
+// Functions calling other user-defined functions (chaining)
 def Float dobro(Float x)
 begin
   return x * 2.0;

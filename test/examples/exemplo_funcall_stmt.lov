@@ -1,3 +1,4 @@
+// Function call used as a standalone statement
 def Void imprimir(Float x)
 begin
   print x;

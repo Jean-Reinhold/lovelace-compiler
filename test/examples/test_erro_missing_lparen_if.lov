@@ -1,3 +1,4 @@
+// if without parenthesized condition
 main ()
 begin
   let Float x;

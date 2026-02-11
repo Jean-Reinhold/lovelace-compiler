@@ -1,3 +1,4 @@
+// Function with four Float parameters
 def Float soma4(Float a, Float b, Float c, Float d)
 begin
   return ((a + b) + c) + d;

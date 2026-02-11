@@ -1,3 +1,4 @@
+// Plain integer literals (5, 100, 0)
 main ()
 begin
   let Float a;

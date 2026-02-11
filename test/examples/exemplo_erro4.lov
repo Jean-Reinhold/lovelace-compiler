@@ -1,3 +1,4 @@
+// Missing begin keyword in main
 main ()
   let Float x;
   x := 5.0;

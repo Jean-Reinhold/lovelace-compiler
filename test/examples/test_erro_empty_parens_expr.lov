@@ -1,3 +1,4 @@
+// Empty parentheses () used as expression
 main ()
 begin
   let Float x;

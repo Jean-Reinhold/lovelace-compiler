@@ -1,3 +1,4 @@
+// Void function with bare return statement
 def Void nada()
 begin
   return;

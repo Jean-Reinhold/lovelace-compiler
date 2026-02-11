@@ -1,3 +1,4 @@
+// Boolean variables with && and || operators
 main ()
 begin
   let Bool a;

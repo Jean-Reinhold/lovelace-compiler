@@ -1,3 +1,4 @@
+// Variable declaration, assignment and print
 main ()
  begin
  let Float teste;

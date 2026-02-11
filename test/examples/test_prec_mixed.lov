@@ -1,3 +1,4 @@
+// Full precedence chain: arithmetic > comparison > logical
 main ()
 begin
   let Float a;

@@ -1,3 +1,4 @@
+// Missing closing end keyword
 main ()
 begin
   let Float x;

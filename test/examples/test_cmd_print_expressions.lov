@@ -1,3 +1,4 @@
+// Print with literal, variable, arithmetic, comparison, and Bool values
 main ()
 begin
   let Float x;

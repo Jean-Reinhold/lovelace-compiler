@@ -1,8 +1,8 @@
-Erro de sintaxe na linha 5, coluna 3: Encountered " <IDENTIFIER> "x "" at line 5, column 6.
+Erro de sintaxe na linha 6, coluna 3: Encountered " <IDENTIFIER> "x "" at line 6, column 6.
 Was expecting:
     "(" ...
     
-Esperado: Encountered " <IDENTIFIER> "x "" at line 5, column 6.
+Esperado: Encountered " <IDENTIFIER> "x "" at line 6, column 6.
 Was expecting:
     "(" ...
     

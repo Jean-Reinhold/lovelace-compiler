@@ -1,3 +1,4 @@
+// Declarations only, no executable statements in main
 main ()
 begin
   let Float x;

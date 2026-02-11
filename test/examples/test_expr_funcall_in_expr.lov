@@ -1,3 +1,4 @@
+// Function calls inside arithmetic expressions and as nested arguments
 def Float dobro(Float x)
 begin
   return x * 2.0;

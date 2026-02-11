@@ -1,3 +1,4 @@
+// Multiple sequential if and while blocks in the same scope
 main ()
 begin
   let Float x;

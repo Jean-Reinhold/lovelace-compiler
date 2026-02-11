@@ -24,29 +24,7 @@ mkdir -p test/expected
 mkdir -p test/expected_sintatico
 mkdir -p test/expected_compiler
 
-VALID_TESTS=(
-    "exemplo" "exemplo1" "exemplo2" "exemplo3" "exemplo4"
-    "exemplo_empty" "exemplo_nested" "exemplo_funcall_stmt"
-    "exemplo_bool_ops" "exemplo_scientific" "exemplo_multiparams"
-    "exemplo_void_return"
-    "test_id_underscore" "test_id_multi_underscore" "test_id_mixed_case"
-    "test_num_integer" "test_num_scientific_signs" "test_num_variety"
-    "test_op_arithmetic" "test_op_comparison" "test_op_logical"
-    "test_prec_arith" "test_prec_bool" "test_prec_mixed"
-    "test_expr_nested_parens" "test_expr_funcall_in_expr" "test_expr_bool_literals_in_expr"
-    "test_cmd_empty_blocks" "test_cmd_sequential_control" "test_cmd_print_expressions"
-    "test_func_bool_params" "test_func_mixed_params" "test_func_chain_calls"
-    "test_func_no_params_expr"
-    "test_edge_only_decls" "test_edge_many_funcs"
-)
-
-ERROR_TESTS=(
-    "exemplo_erro" "exemplo_erro2" "exemplo_erro3" "exemplo_erro4"
-    "test_erro_invalid_char" "test_erro_missing_rparen" "test_erro_missing_end_semi"
-    "test_erro_missing_assign" "test_erro_keyword_as_id" "test_erro_def_no_type"
-    "test_erro_empty_parens_expr" "test_erro_double_semi" "test_erro_missing_lparen_if"
-    "test_erro_missing_main" "test_erro_func_after_main"
-)
+source "${SCRIPT_DIR}/test_discover.sh"
 
 GENERATED=0
 SKIPPED=0

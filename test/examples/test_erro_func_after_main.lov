@@ -1,3 +1,4 @@
+// Function definition inside main body (wrong scope)
 main ()
 begin
   print 1.0;

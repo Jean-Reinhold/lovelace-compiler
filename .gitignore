@@ -111,3 +111,6 @@ $RECYCLE.BIN/
 # Test output files
 /tmp/*_actual.out
 
+# Generated test report
+test/TEST_REPORT.md
+

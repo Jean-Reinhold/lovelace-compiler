@@ -1,3 +1,4 @@
+// Invalid expression (* without left operand)
 main ()
 begin
   let Float x;

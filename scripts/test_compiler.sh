@@ -5,150 +5,150 @@ PROJECT_ROOT="$( cd "$SCRIPT_DIR/.." && pwd )"
 
 cd "$PROJECT_ROOT"
 
-echo "Running Lovelace Compiler Tests..."
-echo "=========================================="
-echo ""
+# Parse flags
+VERBOSE=0
+for arg in "$@"; do
+    case "$arg" in
+        -v|--verbose) VERBOSE=1 ;;
+    esac
+done
+export VERBOSE
 
 if [ ! -d "lovelace" ] || [ ! -f "lovelace/LovelaceCompiler.class" ]; then
     echo "Error: Compiler not compiled. Please run ./scripts/build.sh first."
     exit 1
 fi
 
-PASSED=0
-FAILED=0
+source "${SCRIPT_DIR}/test_discover.sh"
 
-# Valid programs - compile and compare generated C with expected output
-VALID_TESTS=(
-    "exemplo" "exemplo1" "exemplo2" "exemplo3" "exemplo4"
-    "exemplo_empty" "exemplo_nested" "exemplo_funcall_stmt"
-    "exemplo_bool_ops" "exemplo_scientific" "exemplo_multiparams"
-    "exemplo_void_return"
-    "test_id_underscore" "test_id_multi_underscore" "test_id_mixed_case"
-    "test_num_integer" "test_num_scientific_signs" "test_num_variety"
-    "test_op_arithmetic" "test_op_comparison" "test_op_logical"
-    "test_prec_arith" "test_prec_bool" "test_prec_mixed"
-    "test_expr_nested_parens" "test_expr_funcall_in_expr" "test_expr_bool_literals_in_expr"
-    "test_cmd_empty_blocks" "test_cmd_sequential_control" "test_cmd_print_expressions"
-    "test_func_bool_params" "test_func_mixed_params" "test_func_chain_calls"
-    "test_func_no_params_expr"
-    "test_edge_only_decls" "test_edge_many_funcs"
-)
+__FORCE_COLOR=1
+source "${SCRIPT_DIR}/test_lib.sh"
 
-for test in "${VALID_TESTS[@]}"; do
-    echo "Testing: $test.lov"
+run_tests() {
+    local PASSED=0
+    local FAILED=0
+    local TOTAL=$((${#VALID_TESTS[@]} + ${#ERROR_TESTS[@]}))
 
-    INPUT_FILE="test/examples/${test}.lov"
-    EXPECTED_FILE="test/expected_compiler/${test}.c"
-    GENERATED_FILE="test/examples/${test}.c"
+    print_suite_header "Lovelace Compiler Tests"
+    init_progress "$TOTAL"
 
-    if [ ! -f "$INPUT_FILE" ]; then
-        echo "  ERROR: Input file not found: $INPUT_FILE"
-        FAILED=$((FAILED + 1))
-        continue
-    fi
+    print_section_header "Valid Programs (${#VALID_TESTS[@]})"
 
-    # Run compiler
-    OUTPUT=$(java lovelace.LovelaceCompiler "$INPUT_FILE" 2>&1)
-    EXIT_CODE=$?
+    for test in "${VALID_TESTS[@]}"; do
+        local INPUT_FILE="test/examples/${test}.lov"
+        local EXPECTED_FILE="test/expected_compiler/${test}.c"
+        local GENERATED_FILE="test/examples/${test}.c"
+        local desc="${TEST_DESC[$test]:-$test}"
 
-    if [ $EXIT_CODE -ne 0 ]; then
-        echo "  FAILED (compiler error)"
-        echo "    $OUTPUT"
-        FAILED=$((FAILED + 1))
-        continue
-    fi
+        advance_progress
 
-    if [ ! -f "$GENERATED_FILE" ]; then
-        echo "  FAILED (no .c file generated)"
-        FAILED=$((FAILED + 1))
-        continue
-    fi
+        if [ ! -f "$INPUT_FILE" ]; then
+            print_fail "$test" "$desc" "input file not found"
+            FAILED=$((FAILED + 1))
+            continue
+        fi
 
-    # Compare with expected output
-    if [ ! -f "$EXPECTED_FILE" ]; then
-        echo "  WARNING: Expected output not found: $EXPECTED_FILE"
-        echo "    Creating it with actual output..."
-        mkdir -p test/expected_compiler
-        cp "$GENERATED_FILE" "$EXPECTED_FILE"
-        PASSED=$((PASSED + 1))
-    else
-        if diff -q "$EXPECTED_FILE" "$GENERATED_FILE" > /dev/null 2>&1; then
-            echo "  PASSED"
+        # Run compiler
+        local OUTPUT
+        OUTPUT=$(java lovelace.LovelaceCompiler "$INPUT_FILE" 2>&1)
+        local EXIT_CODE=$?
+
+        if [ $EXIT_CODE -ne 0 ]; then
+            print_fail "$test" "$desc" "compiler error"
+            if [[ "${VERBOSE:-0}" == "1" && -n "$OUTPUT" ]]; then
+                printf "         ${C_DIM}%s${C_RESET}\n" "$OUTPUT"
+            fi
+            FAILED=$((FAILED + 1))
+            continue
+        fi
+
+        if [ ! -f "$GENERATED_FILE" ]; then
+            print_fail "$test" "$desc" "no .c file generated"
+            FAILED=$((FAILED + 1))
+            continue
+        fi
+
+        # Compare with expected output
+        if [ ! -f "$EXPECTED_FILE" ]; then
+            mkdir -p test/expected_compiler
+            cp "$GENERATED_FILE" "$EXPECTED_FILE"
+            print_pass "$test" "$desc (baseline created)"
             PASSED=$((PASSED + 1))
+            verbose_file "Input" "$INPUT_FILE"
+            verbose_file "Generated C (baseline)" "$GENERATED_FILE"
         else
-            echo "  FAILED (output mismatch)"
-            echo "    Differences:"
-            diff "$EXPECTED_FILE" "$GENERATED_FILE" | head -20 | sed 's/^/      /'
+            if diff -q "$EXPECTED_FILE" "$GENERATED_FILE" > /dev/null 2>&1; then
+                print_pass "$test" "$desc"
+                PASSED=$((PASSED + 1))
+                verbose_file "Input" "$INPUT_FILE"
+                verbose_file "Expected C" "$EXPECTED_FILE"
+                verbose_file "Generated C" "$GENERATED_FILE"
+            else
+                print_fail "$test" "$desc" "output mismatch"
+                colored_diff "$EXPECTED_FILE" "$GENERATED_FILE"
+                FAILED=$((FAILED + 1))
+            fi
+        fi
+
+        # Verify generated C compiles with gcc (if available)
+        if command -v gcc &> /dev/null; then
+            local GCC_OUTPUT
+            GCC_OUTPUT=$(gcc -fsyntax-only -Wno-format "$GENERATED_FILE" 2>&1)
+            if [ $? -ne 0 ]; then
+                print_warning "gcc: generated C has syntax errors:"
+                while IFS= read -r line; do
+                    print_warning "  $line"
+                done <<< "$GCC_OUTPUT"
+            fi
+        fi
+
+        # Clean up generated file
+        rm -f "$GENERATED_FILE"
+    done
+
+    print_section_header "Error Programs (${#ERROR_TESTS[@]})"
+
+    for test in "${ERROR_TESTS[@]}"; do
+        local INPUT_FILE="test/examples/${test}.lov"
+        local desc="${TEST_DESC[$test]:-$test}"
+
+        advance_progress
+
+        if [ ! -f "$INPUT_FILE" ]; then
+            print_fail "$test" "$desc" "input file not found"
+            FAILED=$((FAILED + 1))
+            continue
+        fi
+
+        local OUTPUT
+        OUTPUT=$(java lovelace.LovelaceCompiler "$INPUT_FILE" 2>&1)
+        local EXIT_CODE=$?
+
+        if [ $EXIT_CODE -ne 0 ]; then
+            print_pass "$test" "$desc"
+            PASSED=$((PASSED + 1))
+            verbose_file "Input" "$INPUT_FILE"
+        else
+            print_fail "$test" "$desc" "should have reported an error"
             FAILED=$((FAILED + 1))
         fi
-    fi
 
-    # Verify generated C compiles with gcc (if available)
-    if command -v gcc &> /dev/null; then
-        GCC_OUTPUT=$(gcc -fsyntax-only -Wno-format "$GENERATED_FILE" 2>&1)
-        if [ $? -ne 0 ]; then
-            echo "  WARNING: Generated C has syntax errors:"
-            echo "    $GCC_OUTPUT"
-        fi
-    fi
+        # Clean up any accidentally generated file
+        rm -f "test/examples/${test}.c"
+    done
 
-    # Clean up generated file
-    rm -f "$GENERATED_FILE"
+    print_summary $PASSED $FAILED
 
-    echo ""
-done
-
-# Error programs - verify they produce parse errors
-ERROR_TESTS=(
-    "exemplo_erro" "exemplo_erro2" "exemplo_erro3" "exemplo_erro4"
-    "test_erro_invalid_char" "test_erro_missing_rparen" "test_erro_missing_end_semi"
-    "test_erro_missing_assign" "test_erro_keyword_as_id" "test_erro_def_no_type"
-    "test_erro_empty_parens_expr" "test_erro_double_semi" "test_erro_missing_lparen_if"
-    "test_erro_missing_main" "test_erro_func_after_main"
-)
-
-echo "--- Error Tests ---"
-echo ""
-
-for test in "${ERROR_TESTS[@]}"; do
-    echo "Testing: $test.lov (should fail)"
-
-    INPUT_FILE="test/examples/${test}.lov"
-
-    if [ ! -f "$INPUT_FILE" ]; then
-        echo "  ERROR: Input file not found: $INPUT_FILE"
-        FAILED=$((FAILED + 1))
-        continue
-    fi
-
-    OUTPUT=$(java lovelace.LovelaceCompiler "$INPUT_FILE" 2>&1)
-    EXIT_CODE=$?
-
-    if [ $EXIT_CODE -ne 0 ]; then
-        echo "  PASSED (correctly reported error)"
-        PASSED=$((PASSED + 1))
+    if [ $FAILED -eq 0 ]; then
+        return 0
     else
-        echo "  FAILED (should have reported an error)"
-        FAILED=$((FAILED + 1))
+        return 1
     fi
+}
 
-    # Clean up any accidentally generated file
-    rm -f "test/examples/${test}.c"
-
-    echo ""
-done
-
-echo "=========================================="
-echo "Test Results:"
-echo "  Passed: $PASSED"
-echo "  Failed: $FAILED"
-echo "  Total:  $((PASSED + FAILED))"
-echo ""
-
-if [ $FAILED -eq 0 ]; then
-    echo "All tests passed!"
-    exit 0
+if [ -t 1 ]; then
+    run_tests 2>&1 | less -R
+    exit ${PIPESTATUS[0]}
 else
-    echo "Some tests failed."
-    exit 1
+    run_tests
 fi

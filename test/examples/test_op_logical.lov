@@ -1,3 +1,4 @@
+// Logical && and || with all boolean input combinations
 main ()
 begin
   let Bool a;

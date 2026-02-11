@@ -1,3 +1,4 @@
+// Invalid character @ in source (lexer error)
 main ()
 begin
   let Float x;

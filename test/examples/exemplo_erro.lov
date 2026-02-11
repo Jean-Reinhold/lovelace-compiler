@@ -1,3 +1,4 @@
+// Missing semicolon after assignment
 main ()
 begin
   let Float x;

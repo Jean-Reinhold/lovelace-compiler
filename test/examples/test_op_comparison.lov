@@ -1,3 +1,4 @@
+// Each comparison operator isolated: <, >, ==
 main ()
 begin
   let Float a;

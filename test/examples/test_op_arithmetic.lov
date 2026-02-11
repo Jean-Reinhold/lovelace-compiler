@@ -1,3 +1,4 @@
+// Each arithmetic operator isolated: +, -, *, /
 main ()
 begin
   let Float a;

@@ -1,3 +1,4 @@
+// All number formats combined: integer, decimal, scientific, signed exponent
 main ()
 begin
   let Float a;

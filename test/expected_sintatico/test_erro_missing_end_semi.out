@@ -1,8 +1,8 @@
-Erro de sintaxe na linha 7, coluna 3: Encountered " "print" "print "" at line 8, column 3.
+Erro de sintaxe na linha 8, coluna 3: Encountered " "print" "print "" at line 9, column 3.
 Was expecting:
     ";" ...
     
-Esperado: Encountered " "print" "print "" at line 8, column 3.
+Esperado: Encountered " "print" "print "" at line 9, column 3.
 Was expecting:
     ";" ...
     

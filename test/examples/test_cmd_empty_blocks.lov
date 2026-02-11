@@ -1,3 +1,4 @@
+// Empty if and while bodies (zero statements)
 main ()
 begin
   let Float x;

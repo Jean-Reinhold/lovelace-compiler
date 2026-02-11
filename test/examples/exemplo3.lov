@@ -1,3 +1,4 @@
+// Multiple functions (soma, fatorial, ehPositivo), function calls in expressions
 def Float soma(Float a, Float b)
 begin
   return (a + b);

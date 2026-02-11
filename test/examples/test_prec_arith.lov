@@ -1,3 +1,4 @@
+// Arithmetic precedence: * and / bind tighter than + and -
 main ()
 begin
   let Float r;

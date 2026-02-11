@@ -1,3 +1,4 @@
+// Function with mixed Float and Bool parameter types
 def Float escolher(Bool cond, Float a, Float b)
 begin
   if (cond) begin

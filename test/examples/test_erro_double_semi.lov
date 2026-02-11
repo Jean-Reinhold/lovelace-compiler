@@ -1,3 +1,4 @@
+// Bare semicolon in statement position
 main ()
 begin
   let Float x;

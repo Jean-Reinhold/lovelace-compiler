@@ -1,3 +1,4 @@
+// Boolean precedence: && binds tighter than ||
 main ()
 begin
   let Bool r;

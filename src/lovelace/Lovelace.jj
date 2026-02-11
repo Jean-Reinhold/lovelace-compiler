@@ -34,6 +34,11 @@ SKIP : {
     | "\r"
 }
 
+// Comentários de linha
+SKIP : {
+    < "//" (~["\n","\r"])* ("\n"|"\r"|"\r\n")? >
+}
+
 // Palavras reservadas (precisam vir antes dos identificadores)
 TOKEN : {
     < MAIN : "main" >

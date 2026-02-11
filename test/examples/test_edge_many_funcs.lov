@@ -1,3 +1,4 @@
+// Four+ function definitions with forward declarations
 def Float f1(Float x)
 begin
   return x + 1.0;

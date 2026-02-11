@@ -1,3 +1,4 @@
+// Conditionals, boolean assignment, arithmetic with parentheses
 main ()
 begin
   let Float x;

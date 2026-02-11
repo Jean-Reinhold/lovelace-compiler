@@ -1,3 +1,4 @@
+// Reserved word (begin) used as variable name
 main ()
 begin
   let Float begin;

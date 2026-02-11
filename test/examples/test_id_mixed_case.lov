@@ -1,3 +1,4 @@
+// CamelCase identifiers mixing Float and Bool variables
 main ()
 begin
   let Float myVar;

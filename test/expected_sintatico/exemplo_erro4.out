@@ -1,8 +1,8 @@
-Erro de sintaxe na linha 1, coluna 7: Encountered " "let" "let "" at line 2, column 3.
+Erro de sintaxe na linha 2, coluna 7: Encountered " "let" "let "" at line 3, column 3.
 Was expecting:
     "begin" ...
     
-Esperado: Encountered " "let" "let "" at line 2, column 3.
+Esperado: Encountered " "let" "let "" at line 3, column 3.
 Was expecting:
     "begin" ...
     

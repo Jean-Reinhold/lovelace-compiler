@@ -1,3 +1,4 @@
+// Boolean literals (true/false) in conditions, comparisons, and print
 main ()
 begin
   let Bool a;

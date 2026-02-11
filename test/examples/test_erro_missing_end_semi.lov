@@ -1,3 +1,4 @@
+// Missing ; after end in if block
 main ()
 begin
   let Float x;

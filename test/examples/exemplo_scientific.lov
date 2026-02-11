@@ -1,3 +1,4 @@
+// Scientific notation literals (1.5E10, 2.0e3)
 main ()
 begin
   let Float x;
