@@ -1,21 +1,21 @@
 // Function calls inside arithmetic expressions and as nested arguments
-def Float dobro(Float x)
-begin
-  return x * 2.0;
-end
-
-def Float soma(Float a, Float b)
-begin
-  return a + b;
-end
-
 main ()
 begin
   let Float r;
-  r := dobro(3.0) + 1.0;
+  r := (dobro(3.0) + 1.0);
   print r;
   r := soma(dobro(2.0), 5.0);
   print r;
   r := dobro(soma(1.0, 2.0));
   print r;
+end
+
+def Float dobro(Float x)
+begin
+  return (x * 2.0);
+end
+
+def Float soma(Float a, Float b)
+begin
+  return (a + b);
 end

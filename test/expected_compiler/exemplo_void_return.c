@@ -3,7 +3,6 @@
 void nada();
 
 void nada() {
-    return;
 }
 
 int main() {

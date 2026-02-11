@@ -38,15 +38,18 @@ Ponto e virgula: ;
 Identificador: x
 Atribuição: :=
 Abre parênteses: (
+Abre parênteses: (
 Identificador: x
 Operador aritmético: +
 Identificador: y
 Fecha parênteses: )
 Operador aritmético: *
 Número: 2.0
+Fecha parênteses: )
 Ponto e virgula: ;
 Identificador: y
 Atribuição: :=
+Abre parênteses: (
 Abre parênteses: (
 Identificador: x
 Operador aritmético: -
@@ -54,6 +57,7 @@ Identificador: y
 Fecha parênteses: )
 Operador aritmético: /
 Número: 2.0
+Fecha parênteses: )
 Ponto e virgula: ;
 Palavra reservada: print
 Identificador: x

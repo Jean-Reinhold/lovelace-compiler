@@ -1,25 +1,3 @@
-Palavra reservada: def
-Palavra reservada: Bool
-Identificador: negar
-Abre parênteses: (
-Palavra reservada: Bool
-Identificador: v
-Fecha parênteses: )
-Palavra reservada: begin
-Palavra reservada: if
-Abre parênteses: (
-Identificador: v
-Fecha parênteses: )
-Palavra reservada: begin
-Palavra reservada: return
-Palavra reservada: false
-Ponto e virgula: ;
-Palavra reservada: end
-Ponto e virgula: ;
-Palavra reservada: return
-Palavra reservada: true
-Ponto e virgula: ;
-Palavra reservada: end
 Palavra reservada: main
 Abre parênteses: (
 Fecha parênteses: )
@@ -47,5 +25,25 @@ Fecha parênteses: )
 Ponto e virgula: ;
 Palavra reservada: print
 Identificador: r
+Ponto e virgula: ;
+Palavra reservada: end
+Palavra reservada: def
+Palavra reservada: Bool
+Identificador: negar
+Abre parênteses: (
+Palavra reservada: Bool
+Identificador: v
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: if
+Identificador: v
+Palavra reservada: begin
+Palavra reservada: return
+Palavra reservada: false
+Ponto e virgula: ;
+Palavra reservada: end
+Ponto e virgula: ;
+Palavra reservada: return
+Palavra reservada: true
 Ponto e virgula: ;
 Palavra reservada: end

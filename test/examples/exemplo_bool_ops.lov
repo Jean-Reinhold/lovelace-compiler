@@ -7,10 +7,10 @@ begin
 
   a := true;
   b := false;
-  c := a && b;
+  c := (a && b);
   print c;
 
-  c := a || b;
+  c := (a || b);
   print c;
 
   if (a && (true || false)) begin

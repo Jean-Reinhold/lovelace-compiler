@@ -1,9 +1,9 @@
 // Function definition without return type
+main ()
+begin
+end
+
 def myFunc()
 begin
   return 1.0;
-end
-
-main ()
-begin
 end

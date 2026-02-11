@@ -1,12 +1,12 @@
 // Function with four Float parameters
-def Float soma4(Float a, Float b, Float c, Float d)
-begin
-  return ((a + b) + c) + d;
-end
-
 main ()
 begin
   let Float resultado;
   resultado := soma4(1.0, 2.0, 3.0, 4.0);
   print resultado;
+end
+
+def Float soma4(Float a, Float b, Float c, Float d)
+begin
+  return (((a + b) + c) + d);
 end

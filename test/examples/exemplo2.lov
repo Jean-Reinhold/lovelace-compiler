@@ -1,8 +1,43 @@
 // Functions, loops, read input, nested control flow
+main ()
+begin
+  let Float num1;
+  let Float num2;
+  let Float resultado;
+  let Bool valido;
+  let Float contador;
+
+  num1 := 15.5;
+  num2 := 3.2;
+
+  resultado := calcular(num1, num2);
+  print resultado;
+
+  valido := verificar(resultado);
+
+  if (valido && (resultado > 10.0)) begin
+    contador := 0.0;
+    while (contador < 5.0) begin
+      contador := (contador + 1.0);
+      print contador;
+    end;
+  end;
+
+  num1 := read();
+  num2 := read();
+
+  if ((num1 < num2) || (num1 == num2)) begin
+    print num1;
+  end;
+
+  resultado := calcular(num1, num2);
+  print resultado;
+end
+
 def Float calcular(Float a, Float b)
 begin
   let Float resultado;
-  resultado := (a + b) * 2.0;
+  resultado := ((a + b) * 2.0);
   return resultado;
 end
 
@@ -17,39 +52,3 @@ begin
   end;
   return ok;
 end
-
-main ()
-begin
-  let Float num1;
-  let Float num2;
-  let Float resultado;
-  let Bool valido;
-  let Float contador;
-  
-  num1 := 15.5;
-  num2 := 3.2;
-  
-  resultado := calcular(num1, num2);
-  print resultado;
-  
-  valido := verificar(resultado);
-  
-  if (valido && (resultado > 10.0)) begin
-    contador := 0.0;
-    while (contador < 5.0) begin
-      contador := (contador + 1.0);
-      print contador;
-    end;
-  end;
-  
-  num1 := read();
-  num2 := read();
-  
-  if ((num1 < num2) || (num1 == num2)) begin
-    print num1;
-  end;
-  
-  resultado := calcular(num1, num2);
-  print resultado;
-end
-

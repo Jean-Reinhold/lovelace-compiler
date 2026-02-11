@@ -24,36 +24,44 @@ Palavra reservada: false
 Ponto e virgula: ;
 Identificador: c
 Atribuição: :=
+Abre parênteses: (
 Identificador: a
 Operador lógico: &&
 Identificador: b
+Fecha parênteses: )
 Ponto e virgula: ;
 Palavra reservada: print
 Identificador: c
 Ponto e virgula: ;
 Identificador: c
 Atribuição: :=
+Abre parênteses: (
 Identificador: a
 Operador lógico: ||
 Identificador: b
+Fecha parênteses: )
 Ponto e virgula: ;
 Palavra reservada: print
 Identificador: c
 Ponto e virgula: ;
 Identificador: c
 Atribuição: :=
+Abre parênteses: (
 Identificador: a
 Operador lógico: &&
 Identificador: a
+Fecha parênteses: )
 Ponto e virgula: ;
 Palavra reservada: print
 Identificador: c
 Ponto e virgula: ;
 Identificador: c
 Atribuição: :=
+Abre parênteses: (
 Identificador: b
 Operador lógico: ||
 Identificador: b
+Fecha parênteses: )
 Ponto e virgula: ;
 Palavra reservada: print
 Identificador: c

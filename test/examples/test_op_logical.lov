@@ -6,12 +6,12 @@ begin
   let Bool c;
   a := true;
   b := false;
-  c := a && b;
+  c := (a && b);
   print c;
-  c := a || b;
+  c := (a || b);
   print c;
-  c := a && a;
+  c := (a && a);
   print c;
-  c := b || b;
+  c := (b || b);
   print c;
 end

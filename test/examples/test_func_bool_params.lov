@@ -1,12 +1,4 @@
 // Function with Bool parameter and Bool return type
-def Bool negar(Bool v)
-begin
-  if (v) begin
-    return false;
-  end;
-  return true;
-end
-
 main ()
 begin
   let Bool r;
@@ -14,4 +6,12 @@ begin
   print r;
   r := negar(false);
   print r;
+end
+
+def Bool negar(Bool v)
+begin
+  if v begin
+    return false;
+  end;
+  return true;
 end

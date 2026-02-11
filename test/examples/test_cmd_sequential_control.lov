@@ -12,10 +12,10 @@ begin
     print y;
   end;
   while (x > 0.0) begin
-    x := x - 1.0;
+    x := (x - 1.0);
   end;
   while (y > 5.0) begin
-    y := y - 1.0;
+    y := (y - 1.0);
   end;
   print x;
   print y;

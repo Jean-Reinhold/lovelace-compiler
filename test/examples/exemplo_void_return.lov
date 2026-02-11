@@ -1,10 +1,9 @@
-// Void function with bare return statement
-def Void nada()
-begin
-  return;
-end
-
+// Void function without return statement
 main ()
 begin
   nada();
+end
+
+def Void nada()
+begin
 end

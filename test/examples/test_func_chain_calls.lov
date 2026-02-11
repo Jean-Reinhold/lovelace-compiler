@@ -1,7 +1,16 @@
 // Functions calling other user-defined functions (chaining)
+main ()
+begin
+  let Float r;
+  r := quadruplo(3.0);
+  print r;
+  r := somaEDobra(2.0, 3.0);
+  print r;
+end
+
 def Float dobro(Float x)
 begin
-  return x * 2.0;
+  return (x * 2.0);
 end
 
 def Float quadruplo(Float x)
@@ -11,14 +20,5 @@ end
 
 def Float somaEDobra(Float a, Float b)
 begin
-  return dobro(a + b);
-end
-
-main ()
-begin
-  let Float r;
-  r := quadruplo(3.0);
-  print r;
-  r := somaEDobra(2.0, 3.0);
-  print r;
+  return dobro((a + b));
 end

@@ -1,12 +1,4 @@
 // Function with mixed Float and Bool parameter types
-def Float escolher(Bool cond, Float a, Float b)
-begin
-  if (cond) begin
-    return a;
-  end;
-  return b;
-end
-
 main ()
 begin
   let Float r;
@@ -14,4 +6,12 @@ begin
   print r;
   r := escolher(false, 10.0, 20.0);
   print r;
+end
+
+def Float escolher(Bool cond, Float a, Float b)
+begin
+  if cond begin
+    return a;
+  end;
+  return b;
 end

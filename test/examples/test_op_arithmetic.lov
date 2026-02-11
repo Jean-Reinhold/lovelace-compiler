@@ -6,12 +6,12 @@ begin
   let Float r;
   a := 10.0;
   b := 3.0;
-  r := a + b;
+  r := (a + b);
   print r;
-  r := a - b;
+  r := (a - b);
   print r;
-  r := a * b;
+  r := (a * b);
   print r;
-  r := a / b;
+  r := (a / b);
   print r;
 end

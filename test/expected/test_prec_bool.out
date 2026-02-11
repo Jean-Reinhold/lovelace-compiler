@@ -8,22 +8,30 @@ Identificador: r
 Ponto e virgula: ;
 Identificador: r
 Atribuição: :=
+Abre parênteses: (
 Palavra reservada: true
 Operador lógico: ||
+Abre parênteses: (
 Palavra reservada: false
 Operador lógico: &&
 Palavra reservada: false
+Fecha parênteses: )
+Fecha parênteses: )
 Ponto e virgula: ;
 Palavra reservada: print
 Identificador: r
 Ponto e virgula: ;
 Identificador: r
 Atribuição: :=
+Abre parênteses: (
 Palavra reservada: false
 Operador lógico: ||
+Abre parênteses: (
 Palavra reservada: true
 Operador lógico: &&
 Palavra reservada: true
+Fecha parênteses: )
+Fecha parênteses: )
 Ponto e virgula: ;
 Palavra reservada: print
 Identificador: r

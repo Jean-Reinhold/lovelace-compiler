@@ -24,36 +24,44 @@ Número: 3.0
 Ponto e virgula: ;
 Identificador: r
 Atribuição: :=
+Abre parênteses: (
 Identificador: a
 Operador aritmético: +
 Identificador: b
+Fecha parênteses: )
 Ponto e virgula: ;
 Palavra reservada: print
 Identificador: r
 Ponto e virgula: ;
 Identificador: r
 Atribuição: :=
+Abre parênteses: (
 Identificador: a
 Operador aritmético: -
 Identificador: b
+Fecha parênteses: )
 Ponto e virgula: ;
 Palavra reservada: print
 Identificador: r
 Ponto e virgula: ;
 Identificador: r
 Atribuição: :=
+Abre parênteses: (
 Identificador: a
 Operador aritmético: *
 Identificador: b
+Fecha parênteses: )
 Ponto e virgula: ;
 Palavra reservada: print
 Identificador: r
 Ponto e virgula: ;
 Identificador: r
 Atribuição: :=
+Abre parênteses: (
 Identificador: a
 Operador aritmético: /
 Identificador: b
+Fecha parênteses: )
 Ponto e virgula: ;
 Palavra reservada: print
 Identificador: r

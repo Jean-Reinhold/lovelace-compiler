@@ -19,9 +19,7 @@ Atribuição: :=
 Palavra reservada: false
 Ponto e virgula: ;
 Palavra reservada: if
-Abre parênteses: (
 Palavra reservada: true
-Fecha parênteses: )
 Palavra reservada: begin
 Palavra reservada: print
 Número: 1.0

@@ -1,28 +1,4 @@
 // Multiple functions (soma, fatorial, ehPositivo), function calls in expressions
-def Float soma(Float a, Float b)
-begin
-  return (a + b);
-end
-
-def Float fatorial(Float n)
-begin
-  let Float resultado;
-  resultado := 1.0;
-  while (n > 1.0) begin
-    resultado := resultado * n;
-    n := n - 1.0;
-  end;
-  return resultado;
-end
-
-def Bool ehPositivo(Float x)
-begin
-  if (x > 0.0) begin
-    return true;
-  end;
-  return false;
-end
-
 main ()
 begin
   let Float a;
@@ -48,7 +24,31 @@ begin
   end;
 
   a := read();
-  if (ehPositivo(a)) begin
+  if ehPositivo(a) begin
     print soma(a, b);
   end;
+end
+
+def Float soma(Float a, Float b)
+begin
+  return (a + b);
+end
+
+def Float fatorial(Float n)
+begin
+  let Float resultado;
+  resultado := 1.0;
+  while (n > 1.0) begin
+    resultado := (resultado * n);
+    n := (n - 1.0);
+  end;
+  return resultado;
+end
+
+def Bool ehPositivo(Float x)
+begin
+  if (x > 0.0) begin
+    return true;
+  end;
+  return false;
 end

@@ -24,34 +24,54 @@ Número: 5.0
 Ponto e virgula: ;
 Identificador: r
 Atribuição: :=
+Abre parênteses: (
+Abre parênteses: (
+Abre parênteses: (
 Identificador: a
 Operador aritmético: +
 Identificador: b
+Fecha parênteses: )
 Operador de comparação: >
 Número: 10.0
+Fecha parênteses: )
 Operador lógico: &&
+Abre parênteses: (
+Abre parênteses: (
 Identificador: a
 Operador aritmético: *
 Identificador: b
+Fecha parênteses: )
 Operador de comparação: >
 Número: 40.0
+Fecha parênteses: )
+Fecha parênteses: )
 Ponto e virgula: ;
 Palavra reservada: print
 Identificador: r
 Ponto e virgula: ;
 Identificador: r
 Atribuição: :=
+Abre parênteses: (
+Abre parênteses: (
+Abre parênteses: (
 Identificador: a
 Operador aritmético: -
 Identificador: b
+Fecha parênteses: )
 Operador de comparação: <
 Número: 10.0
+Fecha parênteses: )
 Operador lógico: ||
+Abre parênteses: (
+Abre parênteses: (
 Identificador: a
 Operador aritmético: /
 Identificador: b
+Fecha parênteses: )
 Operador de comparação: ==
 Número: 2.0
+Fecha parênteses: )
+Fecha parênteses: )
 Ponto e virgula: ;
 Palavra reservada: print
 Identificador: r

@@ -33,9 +33,11 @@ Fecha parênteses: )
 Palavra reservada: begin
 Identificador: x
 Atribuição: :=
+Abre parênteses: (
 Identificador: x
 Operador aritmético: -
 Número: 1.0
+Fecha parênteses: )
 Ponto e virgula: ;
 Palavra reservada: end
 Ponto e virgula: ;

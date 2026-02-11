@@ -5,7 +5,7 @@ begin
   x := 1.0;
   if (x > 0.0) begin
   end;
-  while (false) begin
+  while false begin
   end;
   print x;
 end

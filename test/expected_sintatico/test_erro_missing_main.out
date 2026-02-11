@@ -1,10 +1,8 @@
-Erro de sintaxe na linha 5, coluna 1: Encountered "<EOF>" at line 5, column 4.
-Was expecting one of:
+Erro de sintaxe na linha 0, coluna 0: Encountered " "def" "def "" at line 2, column 1.
+Was expecting:
     "main" ...
-    "def" ...
     
-Esperado: Encountered "<EOF>" at line 5, column 4.
-Was expecting one of:
+Esperado: Encountered " "def" "def "" at line 2, column 1.
+Was expecting:
     "main" ...
-    "def" ...
     

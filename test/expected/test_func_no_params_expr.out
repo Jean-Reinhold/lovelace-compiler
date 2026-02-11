@@ -1,3 +1,43 @@
+Palavra reservada: main
+Abre parênteses: (
+Fecha parênteses: )
+Palavra reservada: begin
+Palavra reservada: let
+Palavra reservada: Float
+Identificador: r
+Ponto e virgula: ;
+Identificador: r
+Atribuição: :=
+Abre parênteses: (
+Identificador: pi
+Abre parênteses: (
+Fecha parênteses: )
+Operador aritmético: +
+Número: 1.0
+Fecha parênteses: )
+Ponto e virgula: ;
+Palavra reservada: print
+Identificador: r
+Ponto e virgula: ;
+Identificador: r
+Atribuição: :=
+Abre parênteses: (
+Identificador: pi
+Abre parênteses: (
+Fecha parênteses: )
+Operador aritmético: *
+Número: 2.0
+Fecha parênteses: )
+Ponto e virgula: ;
+Palavra reservada: print
+Identificador: r
+Ponto e virgula: ;
+Palavra reservada: print
+Identificador: zero
+Abre parênteses: (
+Fecha parênteses: )
+Ponto e virgula: ;
+Palavra reservada: end
 Palavra reservada: def
 Palavra reservada: Float
 Identificador: pi
@@ -16,41 +56,5 @@ Fecha parênteses: )
 Palavra reservada: begin
 Palavra reservada: return
 Número: 0.0
-Ponto e virgula: ;
-Palavra reservada: end
-Palavra reservada: main
-Abre parênteses: (
-Fecha parênteses: )
-Palavra reservada: begin
-Palavra reservada: let
-Palavra reservada: Float
-Identificador: r
-Ponto e virgula: ;
-Identificador: r
-Atribuição: :=
-Identificador: pi
-Abre parênteses: (
-Fecha parênteses: )
-Operador aritmético: +
-Número: 1.0
-Ponto e virgula: ;
-Palavra reservada: print
-Identificador: r
-Ponto e virgula: ;
-Identificador: r
-Atribuição: :=
-Identificador: pi
-Abre parênteses: (
-Fecha parênteses: )
-Operador aritmético: *
-Número: 2.0
-Ponto e virgula: ;
-Palavra reservada: print
-Identificador: r
-Ponto e virgula: ;
-Palavra reservada: print
-Identificador: zero
-Abre parênteses: (
-Fecha parênteses: )
 Ponto e virgula: ;
 Palavra reservada: end

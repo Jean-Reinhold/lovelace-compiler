@@ -94,15 +94,15 @@ TOKEN : {
     >
 }
 
-// Programa: funções opcionais + main obrigatória
+// Programa: LOVELACE -> MAIN FUNC?
 Prog Program():
 {
     ArrayList<Fun> funcs;
     Main main;
 }
 {
-    funcs = FunctionList()
     main = MainFunction()
+    funcs = FunctionList()
     { return new Prog(main, funcs); }
 }
 
@@ -262,9 +262,7 @@ CIf IfStatement():
 }
 {
     t = <IF>
-    <LPAREN>
     exp = Expression()
-    <RPAREN>
     <BEGIN>
     bloco = StatementList()
     <END>
@@ -281,9 +279,7 @@ CWhile WhileStatement():
 }
 {
     t = <WHILE>
-    <LPAREN>
     exp = Expression()
-    <RPAREN>
     <BEGIN>
     bloco = StatementList()
     <END>
@@ -304,7 +300,7 @@ CPrint PrintStatement():
     { return new CPrint(t.beginLine, exp); }
 }
 
-// Comando return: return expr; (expr opcional)
+// Comando return: return EXP;
 CReturn ReturnStatement():
 {
     Token t;
@@ -312,9 +308,7 @@ CReturn ReturnStatement():
 }
 {
     t = <RETURN>
-    (
-        exp = Expression()
-    )?
+    exp = Expression()
     <SEMICOLON>
     { return new CReturn(t.beginLine, exp); }
 }
@@ -346,129 +340,59 @@ Comando IdentifierStatement():
     { return cmd; }
 }
 
-// Expressão (delega para expressões booleanas)
+// EXP -> "(" EXP OP EXP ")" | FATOR
 Exp Expression():
 {
-    Exp e;
-}
-{
-    e = BooleanOrExpression()
-    { return e; }
-}
-
-// Expressão OR: expr || expr || ...
-Exp BooleanOrExpression():
-{
     Exp left, right;
-}
-{
-    left = BooleanAndExpression()
-    (
-        <OR>
-        right = BooleanAndExpression()
-        { left = new EOpExp("||", left, right); }
-    )*
-    { return left; }
-}
-
-// Expressão AND: expr && expr && ...
-Exp BooleanAndExpression():
-{
-    Exp left, right;
-}
-{
-    left = ComparisonExpression()
-    (
-        <AND>
-        right = ComparisonExpression()
-        { left = new EOpExp("&&", left, right); }
-    )*
-    { return left; }
-}
-
-// Comparações: expr == expr, expr < expr, expr > expr
-Exp ComparisonExpression():
-{
-    Exp left, right;
-    Token op;
-}
-{
-    left = ArithmeticExpression()
-    (
-        ( op = <EQ> | op = <LT> | op = <GT> )
-        right = ArithmeticExpression()
-        { left = new EOpExp(op.image, left, right); }
-    )*
-    { return left; }
-}
-
-// Expressões aritméticas: term + term, term - term
-Exp ArithmeticExpression():
-{
-    Exp left, right;
-    Token op;
-}
-{
-    left = Term()
-    (
-        ( op = <PLUS> | op = <MINUS> )
-        right = Term()
-        { left = new EOpExp(op.image, left, right); }
-    )*
-    { return left; }
-}
-
-// Termos: factor * factor, factor / factor
-Exp Term():
-{
-    Exp left, right;
-    Token op;
-}
-{
-    left = Factor()
-    (
-        ( op = <MULT> | op = <DIV> )
-        right = Factor()
-        { left = new EOpExp(op.image, left, right); }
-    )*
-    { return left; }
-}
-
-// Fatores: (expr), id, número, true, false, chamada de função
-Exp Factor():
-{
+    String op;
     Token t;
-    Exp e;
     ArrayList<Exp> args = new ArrayList<Exp>();
 }
 {
     (
+        // Parenthesized binary operation: ( EXP OP EXP )
         <LPAREN>
-        e = Expression()
+        left = Expression()
+        op = Operator()
+        right = Expression()
         <RPAREN>
-        |
+        { return new EOpExp(op, left, right); }
+    |
+        // FATOR: function call — id ( args? )
         LOOKAHEAD(2)
         t = <IDENTIFIER>
         <LPAREN>
-        (
-            args = ExpressionList()
-        )?
+        ( args = ExpressionList() )?
         <RPAREN>
-        { e = new EChamadaFun(t.image, args); }
-        |
+        { return new EChamadaFun(t.image, args); }
+    |
+        // FATOR: variable
         t = <IDENTIFIER>
-        { e = new EVar(t.image); }
-        |
+        { return new EVar(t.image); }
+    |
+        // FATOR: number literal
         t = <NUMBER>
-        { e = new EFloat(Float.parseFloat(t.image)); }
-        |
+        { return new EFloat(Float.parseFloat(t.image)); }
+    |
+        // FATOR: true
         <TRUE>
-        { e = new ETrue(); }
-        |
+        { return new ETrue(); }
+    |
+        // FATOR: false
         <FALSE>
-        { e = new EFalse(); }
+        { return new EFalse(); }
     )
-    { return e; }
+}
+
+// OP -> "+" | "-" | "*" | "/" | "&&" | "||" | "<" | ">" | "=="
+String Operator():
+{
+    Token t;
+}
+{
+    ( t = <PLUS> | t = <MINUS> | t = <MULT> | t = <DIV>
+    | t = <AND> | t = <OR> | t = <EQ> | t = <LT> | t = <GT> )
+    { return t.image; }
 }
 
 // Lista de expressões: expr, expr, expr, ...

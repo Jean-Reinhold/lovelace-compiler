@@ -8,37 +8,53 @@ Identificador: r
 Ponto e virgula: ;
 Identificador: r
 Atribuição: :=
+Abre parênteses: (
 Número: 2.0
 Operador aritmético: +
+Abre parênteses: (
 Número: 3.0
 Operador aritmético: *
 Número: 4.0
+Fecha parênteses: )
+Fecha parênteses: )
 Ponto e virgula: ;
 Palavra reservada: print
 Identificador: r
 Ponto e virgula: ;
 Identificador: r
 Atribuição: :=
+Abre parênteses: (
 Número: 10.0
 Operador aritmético: -
+Abre parênteses: (
 Número: 6.0
 Operador aritmético: /
 Número: 2.0
+Fecha parênteses: )
+Fecha parênteses: )
 Ponto e virgula: ;
 Palavra reservada: print
 Identificador: r
 Ponto e virgula: ;
 Identificador: r
 Atribuição: :=
+Abre parênteses: (
+Abre parênteses: (
 Número: 1.0
 Operador aritmético: +
+Abre parênteses: (
 Número: 2.0
 Operador aritmético: *
 Número: 3.0
+Fecha parênteses: )
+Fecha parênteses: )
 Operador aritmético: -
+Abre parênteses: (
 Número: 4.0
 Operador aritmético: /
 Número: 2.0
+Fecha parênteses: )
+Fecha parênteses: )
 Ponto e virgula: ;
 Palavra reservada: print
 Identificador: r
